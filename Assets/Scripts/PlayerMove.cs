@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     private CharacterController cc;
-    private float rotSpeed = 200f;
 
+    public Transform cam;
     public GameObject model;
     public float moveSpeed = 7;     // 사용자 이동속도 
 
@@ -27,12 +27,22 @@ public class PlayerMove : MonoBehaviour
 
         Vector3 dir = new Vector3(h, 0, v);
 
-        dir = dir.normalized;
-        
-        if(h != 0 || v != 0)
-            model.transform.forward = dir;
+        if (dir.magnitude > 0.1f)
+        {
+            Vector3 forward = cam.forward;
+            Vector3 right = cam.right;
 
-        cc.Move(dir * moveSpeed * Time.deltaTime);
+            forward.y = 0f;
+            right.y = 0f;
+
+            forward.Normalize();
+            right.Normalize();
+
+            Vector3 movedir = (forward * dir.z + right * dir.x).normalized;
+
+            model.transform.forward = movedir;
+
+            cc.Move(movedir * moveSpeed * Time.deltaTime);
+        }
     }
-
 }
