@@ -36,6 +36,9 @@ public class CameraController : MonoBehaviour
     {
         if (Input.GetMouseButton(1))
             CamRot();
+
+        if (Input.GetKeyDown(KeyCode.F))
+            ToggleSit();
     }
 
     private void LateUpdate()
@@ -55,26 +58,44 @@ public class CameraController : MonoBehaviour
         // CamPos의 궤도 회전
         rotation = Quaternion.Euler(curRotY, curRotX, 0);
 
-        Vector3 lookAt = transform.position + new Vector3(-offsetX, -offsetY, 0);
-        transform.LookAt(lookAt);
+        if (!isSeat)
+        {
+            Vector3 lookAt = transform.position + new Vector3(-offsetX, -offsetY, 0);
+            transform.LookAt(lookAt);
+        }
     }
 
     void CamMove()
     {
-        // CamPos 위치 설정
-        transform.position = target.position + rotation * dir;
+        Vector3 lastPos;
 
-        Vector3 lastPos = WallCheck(transform.position);
+        if(isSeat)
+        {
+            lastPos = target.position + Vector3.up * sitOffsetY;
+        }
+        else
+        {
+        // CamPos 위치 설정
+            transform.position = target.position + rotation * dir;
+            lastPos = target.position + rotation * dir;
+            lastPos = WallCheck(transform.position);
+        }
 
         goPos = lastPos;
-
         // 카메라의 위치 설정
         curPos = Vector3.Lerp(curPos, goPos, delay * Time.deltaTime);
         Camera.transform.position = curPos;
 
+        if (isSeat)
+        {
+            Camera.transform.rotation = rotation;
+        }
+        else
+        {
         // 카메라의 방향 설정
         Vector3 lookAt = target.position + new Vector3(offsetX, offsetY, 0);
         Camera.transform.LookAt(lookAt);
+        }
     }
 
     Vector3 WallCheck(Vector3 pos)
@@ -89,5 +110,16 @@ public class CameraController : MonoBehaviour
         }
 
         return pos;
+    }
+
+
+    void ToggleSit()
+    {
+        isSeat = !isSeat;
+        if (isSeat)
+        {
+            curPos = target.position + Vector3.up * sitOffsetY;
+            Camera.transform.position = curPos;
+        }
     }
 }
