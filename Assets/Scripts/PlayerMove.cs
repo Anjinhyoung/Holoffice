@@ -5,9 +5,9 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     private CharacterController cc;
+    private GameObject model;
 
     public Transform cam;
-    public GameObject model;
     public float moveSpeed = 7;     // 사용자 이동속도 
 
     void Start()
@@ -40,7 +40,7 @@ public class PlayerMove : MonoBehaviour
 
             Vector3 movedir = (forward * dir.z + right * dir.x).normalized;
 
-            model.transform.forward = movedir;
+            //model.transform.forward = movedir;
 
             cc.Move(movedir * moveSpeed * Time.deltaTime);
         }
