@@ -5,14 +5,17 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     private CharacterController cc;
-    private GameObject model;
+    private Transform model;
+    private PlayerManager playerManager;
 
     public Transform cam;
     public float moveSpeed = 7;     // 사용자 이동속도 
 
     void Start()
     {
+        playerManager = FindObjectOfType<PlayerManager>();      // PlayerManager를 가진 컴포넌트 찾기 (하나만 존재할경우 사용)
         cc = GetComponent<CharacterController>();
+        model = transform.Find(playerManager.avatarPrefabs[playerManager.AvatarNum()].name + "(Clone)");    // Instantiate로 생성하여 뒤에 (Clone) 추가
     }
 
     void Update()
@@ -40,7 +43,7 @@ public class PlayerMove : MonoBehaviour
 
             Vector3 movedir = (forward * dir.z + right * dir.x).normalized;
 
-            //model.transform.forward = movedir;
+            model.transform.forward = movedir;
 
             cc.Move(movedir * moveSpeed * Time.deltaTime);
         }

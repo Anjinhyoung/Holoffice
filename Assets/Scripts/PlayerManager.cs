@@ -70,4 +70,9 @@ public class PlayerManager : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
+
+    public int AvatarNum()
+    {
+        return avatarIndex;
+    }
 }

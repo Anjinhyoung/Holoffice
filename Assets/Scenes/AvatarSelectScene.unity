@@ -245,14 +245,6 @@ MonoBehaviour:
   selectButton: {fileID: 1113863364}
   lobbyButton: {fileID: 399528194}
   playerManager: {fileID: 1213192076}
-  avatarPrefabs:
-  - {fileID: 100048, guid: 0f623bf014001584995ab5372e19323d, type: 3}
-  - {fileID: 100048, guid: 333b69473df608940805a04317c56c6c, type: 3}
-  - {fileID: 100048, guid: 4d8055b6d6938c34c8737df771fae55c, type: 3}
-  - {fileID: 100048, guid: b76b28eac0febc743801947f6ead1ded, type: 3}
-  - {fileID: 100048, guid: 019e63eb398053c4ab097c7d982339d2, type: 3}
-  - {fileID: 100048, guid: cdaba05c004e27b4d8f2f4478674afec, type: 3}
-  - {fileID: 100048, guid: 185bfac8d64a19645a089256063d89ca, type: 3}
   previewPoint: {fileID: 1524080325}
 --- !u!1 &60671129
 GameObject:
@@ -1234,7 +1226,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: 
-  avatarIndex: 0
   isSeat: 0
   avatarPrefabs:
   - {fileID: 100048, guid: 0f623bf014001584995ab5372e19323d, type: 3}

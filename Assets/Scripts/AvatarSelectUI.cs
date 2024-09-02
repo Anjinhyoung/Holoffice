@@ -11,7 +11,6 @@ public class AvatarSelectionUI : MonoBehaviour
     public Button selectButton;
     public Button lobbyButton;
     public PlayerManager playerManager;
-    public GameObject[] avatarPrefabs;
     public Transform previewPoint;
 
     private int currAvatarIndex = 0;
@@ -19,7 +18,7 @@ public class AvatarSelectionUI : MonoBehaviour
 
     void Start()
     {
-        if (avatarPrefabs == null || avatarPrefabs.Length == 0)
+        if (playerManager.avatarPrefabs == null || playerManager.avatarPrefabs.Length == 0)
         {
             Debug.Log("아바타 프리펩 배열이 비어있거나 세팅이 안되었다");
 
@@ -37,13 +36,13 @@ public class AvatarSelectionUI : MonoBehaviour
 
     void NextAvatar()
     {
-        currAvatarIndex = (currAvatarIndex + 1) % avatarPrefabs.Length;
+        currAvatarIndex = (currAvatarIndex + 1) % playerManager.avatarPrefabs.Length;
         ShowAvatarPreview(currAvatarIndex);
     }
 
     void PrevAvatar()
     {
-        currAvatarIndex = (currAvatarIndex - 1 + avatarPrefabs.Length) % avatarPrefabs.Length;
+        currAvatarIndex = (currAvatarIndex - 1 + playerManager.avatarPrefabs.Length) % playerManager.avatarPrefabs.Length;
         ShowAvatarPreview(currAvatarIndex);
     }
 
@@ -66,6 +65,6 @@ public class AvatarSelectionUI : MonoBehaviour
             Destroy(currPreviewAvatar);
         }
 
-        currPreviewAvatar = Instantiate(avatarPrefabs[index], previewPoint.position, previewPoint.rotation);
+        currPreviewAvatar = Instantiate(playerManager.avatarPrefabs[index], previewPoint.position, previewPoint.rotation);
     }
 }
