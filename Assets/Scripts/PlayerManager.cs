@@ -58,6 +58,16 @@ public class PlayerManager : MonoBehaviour
                 currentAvatarInstance = Instantiate(avatarPrefabs[avatarIndex], playerObject.transform);
                 currentAvatarInstance.transform.localPosition = Vector3.zero;
                 currentAvatarInstance.transform.localRotation = Quaternion.identity;
+
+                Animator animtor = currentAvatarInstance.GetComponent<Animator>();
+                if (animtor == null)
+                {
+                    animtor = currentAvatarInstance.AddComponent<Animator>();
+                }
+
+                animtor.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("PlayerAni");
+
+                animtor.applyRootMotion = false;
             }
             else
             {
