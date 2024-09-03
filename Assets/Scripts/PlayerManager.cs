@@ -15,6 +15,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Awake()
     {
+
         DontDestroyOnLoad(gameObject);
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
