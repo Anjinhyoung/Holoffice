@@ -7,8 +7,6 @@ public class CameraController : MonoBehaviour
     public Camera Camera;
     public Transform target;
     public float distance = 7f;
-    public float offsetX = 1f;
-    public float offsetY = -1f;
     public float delay = 10f;
     public float sitOffsetY = 1.6f;
 
@@ -29,7 +27,7 @@ public class CameraController : MonoBehaviour
         curPos = transform.position;
 
         // CamPos와 타겟 사이의 거리를 나타내는 백터
-        dir = new Vector3(-offsetX, -offsetY, -distance);
+        dir = new Vector3(0, 0, -distance);
     }
 
     void Update()
@@ -60,7 +58,7 @@ public class CameraController : MonoBehaviour
 
         if (!isSeat)
         {
-            Vector3 lookAt = transform.position + new Vector3(-offsetX, -offsetY, 0);
+            Vector3 lookAt = transform.position;
             transform.LookAt(lookAt);
         }
     }
@@ -72,6 +70,13 @@ public class CameraController : MonoBehaviour
         if(isSeat)
         {
             lastPos = target.position + Vector3.up * sitOffsetY;
+
+            goPos = lastPos;
+            // 카메라의 위치 설정
+            curPos = goPos;
+            Camera.transform.position = curPos;
+
+            Camera.transform.rotation = rotation;
         }
         else
         {
@@ -79,23 +84,18 @@ public class CameraController : MonoBehaviour
             transform.position = target.position + rotation * dir;
             lastPos = target.position + rotation * dir;
             lastPos = WallCheck(transform.position);
+
+            goPos = lastPos;
+            // 카메라의 위치 설정
+            curPos = Vector3.Lerp(curPos, goPos, delay * Time.deltaTime);
+            Camera.transform.position = curPos;
+
+            // 카메라의 방향 설정
+            Vector3 lookAt = target.position;
+            Camera.transform.LookAt(lookAt);
         }
 
-        goPos = lastPos;
-        // 카메라의 위치 설정
-        curPos = Vector3.Lerp(curPos, goPos, delay * Time.deltaTime);
-        Camera.transform.position = curPos;
-
-        if (isSeat)
-        {
-            Camera.transform.rotation = rotation;
-        }
-        else
-        {
-        // 카메라의 방향 설정
-        Vector3 lookAt = target.position + new Vector3(offsetX, offsetY, 0);
-        Camera.transform.LookAt(lookAt);
-        }
+       
     }
 
     Vector3 WallCheck(Vector3 pos)
@@ -106,7 +106,7 @@ public class CameraController : MonoBehaviour
 
         if (Physics.Raycast(target.position, dir, out hit, distance, 1<<LayerMask.NameToLayer("Wall")))
         {
-            return hit.point + (target.position - hit.point).normalized * 0.5f;
+            return hit.point + (target.position - hit.point).normalized * 0.7f;
         }
 
         return pos;

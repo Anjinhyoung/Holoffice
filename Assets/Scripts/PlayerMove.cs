@@ -5,14 +5,22 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     private CharacterController cc;
+    private Transform model;
+    private PlayerManager playerManager;
+    private Animator animator;
 
     public Transform cam;
-    public GameObject model;
     public float moveSpeed = 7;     // 사용자 이동속도 
 
     void Start()
     {
+        playerManager = FindObjectOfType<PlayerManager>();      // PlayerManager를 가진 컴포넌트 찾기 (하나만 존재할경우 사용)
         cc = GetComponent<CharacterController>();
+        model = transform.Find(playerManager.avatarPrefabs[playerManager.AvatarNum()].name + "(Clone)");    // Instantiate로 생성하여 뒤에 (Clone) 추가
+
+        Cursor.lockState = CursorLockMode.Confined;
+
+        animator = GetComponentInChildren<Animator>();
     }
 
     void Update()
@@ -22,6 +30,8 @@ public class PlayerMove : MonoBehaviour
 
     void Move()
     {
+        
+
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 
@@ -29,6 +39,8 @@ public class PlayerMove : MonoBehaviour
 
         if (dir.magnitude > 0.1f)
         {
+            animator.SetBool("IsWalk", true);
+
             Vector3 forward = cam.forward;
             Vector3 right = cam.right;
 
@@ -43,6 +55,11 @@ public class PlayerMove : MonoBehaviour
             model.transform.forward = movedir;
 
             cc.Move(movedir * moveSpeed * Time.deltaTime);
+
+        }
+        else
+        {
+            animator.SetBool("IsWalk", false);
         }
     }
 }
