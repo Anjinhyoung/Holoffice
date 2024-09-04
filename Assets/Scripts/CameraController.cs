@@ -17,7 +17,7 @@ public class CameraController : MonoBehaviour
     private Quaternion rotation;
     private Vector3 curPos;
     private Vector3 goPos;
-    private bool isSeat = false;
+    private bool isSit = false;
 
     void Start()
     {
@@ -56,7 +56,7 @@ public class CameraController : MonoBehaviour
         // CamPosÀÇ ±Ëµµ È¸Àü
         rotation = Quaternion.Euler(curRotY, curRotX, 0);
 
-        if (!isSeat)
+        if (!isSit)
         {
             Vector3 lookAt = transform.position;
             transform.LookAt(lookAt);
@@ -67,7 +67,7 @@ public class CameraController : MonoBehaviour
     {
         Vector3 lastPos;
 
-        if(isSeat)
+        if(isSit)
         {
             lastPos = target.position + Vector3.up * sitOffsetY;
 
@@ -115,8 +115,8 @@ public class CameraController : MonoBehaviour
 
     void ToggleSit()
     {
-        isSeat = !isSeat;
-        if (isSeat)
+        isSit = !isSit;
+        if (isSit)  
         {
             curPos = target.position + Vector3.up * sitOffsetY;
             Camera.transform.position = curPos;
