@@ -12,6 +12,7 @@ public class PlayerMove : MonoBehaviour
     public Transform cam;
     public float moveSpeed = 5;     // 사용자 이동속도 
     public bool isSit = false;
+    public bool isWrite = false;
 
     void Start()
     {
@@ -30,10 +31,12 @@ public class PlayerMove : MonoBehaviour
         {
             Move();
         }
-
-        if (Input.GetKeyDown(KeyCode.C))
+        else
         {
-            Sit();
+            if(Input.GetKeyDown(KeyCode.E))
+            {
+                Writ();
+            }
         }
     }
 
@@ -71,9 +74,15 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    void Sit()
+    public void Sit()
     {
-        isSit = !isSit;
-        animator.SetBool("IsSit", isSit);
+        animator.SetBool("IsSit", !isSit);
+    }
+
+    public void Writ()
+    {
+        animator.SetBool("IsWrite", !isWrite);
+
+        isWrite = !isWrite;
     }
 }

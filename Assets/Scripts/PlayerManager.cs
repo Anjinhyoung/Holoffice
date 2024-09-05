@@ -68,7 +68,7 @@ public class PlayerManager : MonoBehaviour
 
                 animtor.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("PlayerAni");
 
-                animtor.applyRootMotion = true;
+                animtor.applyRootMotion = false;
             }
             else
             {
