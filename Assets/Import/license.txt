@@ -1,11 +1,11 @@
 Model Information:
-* title:	A designer meeting room
-* source:	https://sketchfab.com/3d-models/a-designer-meeting-room-0f0ff5edb3f8435b87d1c62eda9bc684
-* author:	AGUNG.IHACKSTUFF@GMAIL.COM (https://sketchfab.com/agung.ihackstuff)
+* title:	VR New Study Room
+* source:	https://sketchfab.com/3d-models/vr-new-study-room-15423eec5ad94cb584a005099ee43443
+* author:	Pikas (https://sketchfab.com/Pikas)
 
 Model License:
 * license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
 * requirements:	Author must be credited. Commercial use is allowed.
 
 If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
-This work is based on "A designer meeting room" (https://sketchfab.com/3d-models/a-designer-meeting-room-0f0ff5edb3f8435b87d1c62eda9bc684) by AGUNG.IHACKSTUFF@GMAIL.COM (https://sketchfab.com/agung.ihackstuff) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+This work is based on "VR New Study Room" (https://sketchfab.com/3d-models/vr-new-study-room-15423eec5ad94cb584a005099ee43443) by Pikas (https://sketchfab.com/Pikas) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

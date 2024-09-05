@@ -10,7 +10,8 @@ public class PlayerMove : MonoBehaviour
     private Animator animator;
 
     public Transform cam;
-    public float moveSpeed = 7;     // 사용자 이동속도 
+    public float moveSpeed = 5;     // 사용자 이동속도 
+    public bool isSit = false;
 
     void Start()
     {
@@ -25,12 +26,19 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        Move();
+        if (!isSit)
+        {
+            Move();
+        }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            Sit();
+        }
     }
 
     void Move()
     {
-        
 
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
@@ -61,5 +69,11 @@ public class PlayerMove : MonoBehaviour
         {
             animator.SetBool("IsWalk", false);
         }
+    }
+
+    void Sit()
+    {
+        isSit = !isSit;
+        animator.SetBool("IsSit", isSit);
     }
 }
