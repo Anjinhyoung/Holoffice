@@ -1,51 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PaintToText : MonoBehaviour
 {
-    public GameObject TextToPaint_Button;
-    public GameObject paint;
-    public GameObject Note;
+    [SerializeField]
+    GameObject text_Collection;
+    [SerializeField]
+    GameObject paint_Button;
+    GameObject paint_Collection;
 
-    public GameObject pen;
-    public GameObject brush;
-    public GameObject erase;
+    // 텍스트 버튼을 눌렀을 경우
 
-
-    public GameObject language;
-    public GameObject language2;
-    public GameObject language3;
-
-    public GameObject ai;
-
-    // UI 버튼을 눌렀을 경우
     public void To_Text()
     {
+        
+        paint_Collection = GameObject.Find("Paint_Collection");
+
+        // 그림판 모음집 비활성화
+        paint_Collection.SetActive(false);
+        // 텍스트 모음집 활성화
+        text_Collection.SetActive(true);
+        // 텍스트 버튼 비활성화
         gameObject.SetActive(false);
-        TextToPaint_Button.SetActive(true);
-        paint.SetActive(false);
-        Note.SetActive(true);
-
-
-        // 펜 비활성화
-        pen.SetActive(false);
-
-        // 브러쉬 비활성화
-        brush.SetActive(false);
-
-        // 지우개 비활성화
-        erase.SetActive(false);
-
-        // Ai 활성화
-        ai.SetActive(true);
-
-
-        // language 관련 버튼들 활성화
-        language.SetActive(true);
-        language2.SetActive(true);
-        language3.SetActive(true);
+        // 그림판 버튼 활성화
+        paint_Button.SetActive(true);
     }
 }
