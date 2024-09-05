@@ -10,7 +10,7 @@ public class PlayerMove : MonoBehaviour
     private Animator animator;
 
     public Transform cam;
-    public float moveSpeed = 7;     // 사용자 이동속도 
+    public float moveSpeed = 5;     // 사용자 이동속도 
     public bool isSit = false;
 
     void Start()
