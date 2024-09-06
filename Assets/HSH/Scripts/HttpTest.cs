@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 
 [System.Serializable]
+// 이 구조체는 POST 요청 시 전송할 데이터를 이 구조체 담아서 JSON 형식으로 서버에 보낸다.
 public struct TextInfo
 {
     public string input_text;
