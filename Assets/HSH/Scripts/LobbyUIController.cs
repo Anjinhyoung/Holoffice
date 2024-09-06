@@ -15,6 +15,18 @@ public class LobbyUIController : MonoBehaviour
     public TMP_InputField[] roomSetting;
 
 
+    private void Awake()
+    {
+        if (lobbyUI == null)
+        {
+            lobbyUI = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     void Start()
     {
         
@@ -23,5 +35,12 @@ public class LobbyUIController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void ShowRoomPanel()
+    {
+        btn_login.interactable = true;
+        panel_login.gameObject.SetActive(false);
+        panel_joinOrCreateRoom.SetActive(true);
     }
 }

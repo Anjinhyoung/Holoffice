@@ -1371,7 +1371,7 @@ MonoBehaviour:
   m_HideSoftKeyboard: 0
   m_CharacterValidation: 0
   m_RegexValue: 
-  m_GlobalPointSize: 14
+  m_GlobalPointSize: 40
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
@@ -2423,7 +2423,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1110189238}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1514869188}
+        m_TargetAssemblyTypeName: ConnectManager, Assembly-CSharp
+        m_MethodName: JoinRoom
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1110189238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2546,8 +2558,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3575,6 +3587,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad630eb1e6e0d654daa0a381edbe8bdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomPrefab: {fileID: 4155955600029089606, guid: 460802887d8e52345aacd808178cfae8,
+    type: 3}
+  scrollContent: {fileID: 573438010}
+  panelList:
+  - {fileID: 222497135}
+  - {fileID: 1447562940}
+  - {fileID: 1308784556}
 --- !u!4 &1514869189
 Transform:
   m_ObjectHideFlags: 0
@@ -4152,7 +4171,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1809629113}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1514869188}
+        m_TargetAssemblyTypeName: ConnectManager, Assembly-CSharp
+        m_MethodName: CreateRoom
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1809629113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4752,7 +4783,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1919939885}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1514869188}
+        m_TargetAssemblyTypeName: ConnectManager, Assembly-CSharp
+        m_MethodName: StartLogin
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1919939885
 MonoBehaviour:
   m_ObjectHideFlags: 0
