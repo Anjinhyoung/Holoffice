@@ -413,6 +413,7 @@ GameObject:
   - component: {fileID: 545023379667529831}
   - component: {fileID: 1545696431144159761}
   - component: {fileID: 8144043196309912812}
+  - component: {fileID: -492487362981348368}
   m_Layer: 5
   m_Name: Panel_RoomInfo
   m_TagString: Untagged
@@ -481,6 +482,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &-492487362981348368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4155955600029089606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 690b4fe44605c994a9576cf98b4af012, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomTexts:
+  - {fileID: 7784670138755307265}
+  - {fileID: 884335595507005219}
+  - {fileID: 8993550399010755492}
+  btn_join: {fileID: 5631060618744919307}
 --- !u!1 &6437273824032472086
 GameObject:
   m_ObjectHideFlags: 0

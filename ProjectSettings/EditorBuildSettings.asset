@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/AvatarSelectScene.unity
     guid: d9dfe78b4170c634597b8f375c9880f2
   - enabled: 1
-    path: Assets/Scenes/HG.unity
+    path: Assets/Scenes/PlayScene.unity
     guid: 5c3fdc44deaf33147b0834df78b0558b
   m_configObjects: {}
