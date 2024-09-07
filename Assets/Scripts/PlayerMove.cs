@@ -74,7 +74,7 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    public void Sit()
+    public void SitAni()
     {
         animator.SetBool("IsSit", !isSit);
     }

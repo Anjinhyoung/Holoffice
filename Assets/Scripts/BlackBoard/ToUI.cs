@@ -8,11 +8,10 @@ public class ToUI : MonoBehaviour
 {
     public Canvas canvas;
 
-    void Update()
+    
+
+    public void OpenNote()
     {
-        if (Input.GetKeyDown("e"))
-        {
-            canvas.gameObject.SetActive(true);
-        }
+        canvas.gameObject.SetActive(true);
     }
 }

@@ -9,6 +9,7 @@ public class CameraController : MonoBehaviour
     public float distance = 7f;
     public float delay = 10f;
     public float sitOffsetY = 1.6f;
+    public CamState currCamState;
 
     private float rotSpeed = 200f;
     private float curRotX = 0f;
@@ -17,10 +18,21 @@ public class CameraController : MonoBehaviour
     private Quaternion rotation;
     private Vector3 curPos;
     private Vector3 goPos;
-    private bool isSit = false;
+
+
+    public enum CamState
+    {
+        Third,
+        First,
+        Computer,
+        Zoom
+    }
+
 
     void Start()
     {
+        currCamState = CamState.Third;
+
         Vector3 angles = Camera.transform.eulerAngles;
         curRotX = angles.y;
         curRotY = angles.x;
@@ -32,11 +44,11 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1) && (currCamState == CamState.First || currCamState == CamState.Third))
             CamRot();
 
-        if (Input.GetKeyDown(KeyCode.F))
-            ToggleSit();
+        if (Input.GetKeyDown(KeyCode.F) && (currCamState == CamState.First || currCamState == CamState.Third))
+            ToggleCamState();
     }
 
     private void LateUpdate()
@@ -56,7 +68,7 @@ public class CameraController : MonoBehaviour
         // CamPos의 궤도 회전
         rotation = Quaternion.Euler(curRotY, curRotX, 0);
 
-        if (!isSit)
+        if (currCamState == CamState.Third)
         {
             Vector3 lookAt = transform.position;
             transform.LookAt(lookAt);
@@ -67,7 +79,7 @@ public class CameraController : MonoBehaviour
     {
         Vector3 lastPos;
 
-        if(isSit)
+        if(currCamState == CamState.First)
         {
             lastPos = target.position + Vector3.up * sitOffsetY;
 
@@ -78,7 +90,7 @@ public class CameraController : MonoBehaviour
 
             Camera.transform.rotation = rotation;
         }
-        else
+        else if (currCamState == CamState.Third)
         {
         // CamPos 위치 설정
             transform.position = target.position + rotation * dir;
@@ -113,10 +125,11 @@ public class CameraController : MonoBehaviour
     }
 
 
-    void ToggleSit()
+    void ToggleCamState()
     {
-        isSit = !isSit;
-        if (isSit)  
+        currCamState = currCamState == CamState.Third ? CamState.First : CamState.Third;
+
+        if (currCamState == CamState.Third)  
         {
             curPos = target.position + Vector3.up * sitOffsetY;
             Camera.transform.position = curPos;

@@ -32,7 +32,7 @@ public class PlayerManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "HG")
+        if (scene.name == "PlayScene")
         {
             LoadSelectedAvatar();
         }

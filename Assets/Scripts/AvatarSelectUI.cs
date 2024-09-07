@@ -50,7 +50,7 @@ public class AvatarSelectionUI : MonoBehaviour
     {
         playerManager.SetSelectedAvatar(currAvatarIndex);
 
-        SceneManager.LoadScene("HG");
+        SceneManager.LoadScene("PlayScene");
     }
 
     void GoLobby()
