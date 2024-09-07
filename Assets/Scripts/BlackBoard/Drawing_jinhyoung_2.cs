@@ -7,31 +7,27 @@ using UnityEngine.UI;
 
 public class Drawing_jinhyoung_2 : MonoBehaviour
 {
-    RawImage rawImage;
-    Texture2D paint; // int형만 넣을 수 있다. float형은 넣을 수 없다.
+    RawImage rawImage; // paint 전체
     RectTransform rt;
 
-    // 픽셀을 채울 크기
-    int pixel_Width;
-    int pixel_Height;
+    [SerializeField]
+    Image blackboard; // 배경색(blackboard) 갖고 오기
 
-    // 배경색(blackboard) 갖고 오기
-    public Image blackboard;
+    Color backGroundColor; // // 그림판 배경 색깔(blackboard)
 
-    // 그림판 배경 색깔(blackboard)
-    Color backGroundColor;
-
-    // 마우스 색갈
-    Color drawColor;
+    Color drawColor; // 마우스 색갈
 
     void Awake()
     {
         rawImage = GetComponent<RawImage>();
-        rt = GetComponent<RectTransform>();
+        rt = rawImage.GetComponent<RectTransform>();
         backGroundColor = blackboard.color;
         drawColor = Color.white;
     }
 
+    Texture2D paint; // int형만 넣을 수 있다. float형은 넣을 수 없다.
+    int pixel_Width;  // 픽셀을 채울 크기
+    int pixel_Height;
 
     void Start()
     {
