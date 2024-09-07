@@ -19,7 +19,11 @@ public class ToUI : MonoBehaviour
 
     void Update()
     {
+        OpenNote();
+    }
 
+    public void OpenNote()
+    {
         float distance = Vector3.Distance(this.gameObject.transform.position, player.transform.position);
 
         // 각도를 구해야 하는데 Dot을 알았다.
@@ -29,16 +33,15 @@ public class ToUI : MonoBehaviour
 
         // 플레이어 방향 벡터(노트북에서 플레이어 향하는 벡터)
         Vector3 to_Player = (this.gameObject.transform.position - player.transform.position).normalized;
-        
+
         float distance_Angle = Vector3.Angle(this.transform.forward, to_Player); // 내가 생각한 게 맞는 지 한 번 물어보기
 
-        
+
         if (Input.GetKeyDown("e") && (0 <= distance && distance <= 1.85) && (135 <= distance_Angle && distance_Angle <= 138))
         {
             // print(distance); // 노트북 정면에서 거의 맨 앞에서 했을 때 1.7 , 뒤에서도 똑같고
             // print(distance_Angle); // '' 136, 이거는 48이 나왔다.
             canvas.gameObject.SetActive(true);
         }
-        
     }
 }
