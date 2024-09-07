@@ -7,9 +7,9 @@ public class PlayerInteract : MonoBehaviour
 {
     private PlayerManager playerManager;
     private CameraController camController;
-    private PlayerMove playerMove;
     private Transform model;
     private ToUI toUI;
+    public PlayerMove playerMove;
 
     void Start()
     {
@@ -37,7 +37,7 @@ public class PlayerInteract : MonoBehaviour
 
         if (other.gameObject.layer == LayerMask.NameToLayer("Laptop"))
         {
-            if (playerMove.isSit)
+            if (playerMove.isSit && !playerMove.isWrite)
             {
                 toUI = other.gameObject.GetComponent<ToUI>();
                 if (Input.GetKeyDown(KeyCode.E))
@@ -45,6 +45,7 @@ public class PlayerInteract : MonoBehaviour
                     toUI.OpenNote();
                     // 카메라 상태를 컴퓨터 줌 상태로 변환
                     camController.CamStateChange(CameraController.CamState.Computer);
+                    playerMove.Write();
                 }
             }
         }

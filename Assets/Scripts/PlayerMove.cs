@@ -31,13 +31,6 @@ public class PlayerMove : MonoBehaviour
         {
             Move();
         }
-        else
-        {
-            if(Input.GetKeyDown(KeyCode.E))
-            {
-                Writ();
-            }
-        }
     }
 
     void Move()
@@ -79,7 +72,7 @@ public class PlayerMove : MonoBehaviour
         animator.SetBool("IsSit", !isSit);
     }
 
-    public void Writ()
+    public void Write()
     {
         animator.SetBool("IsWrite", !isWrite);
 
