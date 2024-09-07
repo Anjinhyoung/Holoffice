@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerInteract : MonoBehaviour
 {
     private PlayerManager playerManager;
+    private CameraController camController;
     private PlayerMove playerMove;
     private Transform model;
     private ToUI toUI;
@@ -14,20 +15,14 @@ public class PlayerInteract : MonoBehaviour
     {
         playerManager = FindObjectOfType<PlayerManager>();
         playerMove = GetComponent<PlayerMove>();
+        camController = GetComponentInChildren<CameraController>();
         model = transform.Find(playerManager.avatarPrefabs[playerManager.AvatarNum()].name + "(Clone)");
 
-        toUI = GetComponent<ToUI>();
     }
 
     void Update()
     {
-        if(playerMove.isSit)
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                toUI.OpenNote();
-            }
-        }
+        
     }
 
     private void OnTriggerStay(Collider other)
@@ -37,6 +32,20 @@ public class PlayerInteract : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.C))
             {
                 Sit(other);
+            }
+        }
+
+        if (other.gameObject.layer == LayerMask.NameToLayer("Laptop"))
+        {
+            if (playerMove.isSit)
+            {
+                toUI = other.gameObject.GetComponent<ToUI>();
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    toUI.OpenNote();
+                    // 카메라 상태를 컴퓨터 줌 상태로 변환
+                    camController.CamStateChange(CameraController.CamState.Computer);
+                }
             }
         }
     }
@@ -72,7 +81,7 @@ public class PlayerInteract : MonoBehaviour
     private IEnumerator StandDelay()
     {
         playerMove.SitAni();
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2.5f);
         playerMove.isSit = false;
     }
 }

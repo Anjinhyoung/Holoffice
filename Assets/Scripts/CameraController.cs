@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour
     public Transform target;
     public float distance = 7f;
     public float delay = 10f;
-    public float sitOffsetY = 1.6f;
+    public float sitOffsetY = 1f;
     public CamState currCamState;
 
     private float rotSpeed = 200f;
@@ -44,11 +44,14 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButton(1) && (currCamState == CamState.First || currCamState == CamState.Third))
-            CamRot();
+        if (currCamState == CamState.First || currCamState == CamState.Third)
+        {
+            if (Input.GetMouseButton(1))
+                CamRot();
 
-        if (Input.GetKeyDown(KeyCode.F) && (currCamState == CamState.First || currCamState == CamState.Third))
-            ToggleCamState();
+            if (Input.GetKeyDown(KeyCode.F))
+                ToggleCamState();
+        }
     }
 
     private void LateUpdate()
@@ -83,7 +86,7 @@ public class CameraController : MonoBehaviour
         {
             lastPos = target.position + Vector3.up * sitOffsetY;
 
-            goPos = lastPos;
+            goPos = lastPos; 
             // 카메라의 위치 설정
             curPos = goPos;
             Camera.transform.position = curPos;
@@ -106,7 +109,14 @@ public class CameraController : MonoBehaviour
             Vector3 lookAt = target.position;
             Camera.transform.LookAt(lookAt);
         }
+        else if (currCamState == CamState.Computer)
+        {
 
+        }
+        else if (currCamState == CamState.Zoom)
+        {
+
+        }
        
     }
 
@@ -127,12 +137,20 @@ public class CameraController : MonoBehaviour
 
     void ToggleCamState()
     {
-        currCamState = currCamState == CamState.Third ? CamState.First : CamState.Third;
-
-        if (currCamState == CamState.Third)  
+        if (currCamState == CamState.First)
         {
+            currCamState = CamState.Third;
+        }
+        else if (currCamState == CamState.Third)  
+        {
+            currCamState = CamState.First;
             curPos = target.position + Vector3.up * sitOffsetY;
             Camera.transform.position = curPos;
         }
+    }
+
+    public void CamStateChange(CamState state)
+    {
+        currCamState = state;
     }
 }
