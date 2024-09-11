@@ -65,6 +65,8 @@ public class PlayerMove : MonoBehaviour
         {
             animator.SetBool("IsWalk", false);
         }
+
+        
     }
 
     public void SitAni()

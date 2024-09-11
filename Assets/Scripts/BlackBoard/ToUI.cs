@@ -48,8 +48,6 @@ public class ToUI : MonoBehaviour
         {
             CanOpenNote = false;
         }
-        Debug.Log(CanOpenNote);
-        Debug.Log(distance_Angle);
     }
 
     public void OpenNote()

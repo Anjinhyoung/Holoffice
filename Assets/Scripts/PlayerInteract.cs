@@ -57,8 +57,11 @@ public class PlayerInteract : MonoBehaviour
         {
             //other.GetComponent<MeshCollider>().enabled = false;
 
-            Vector3 dir = other.transform.localRotation.eulerAngles;
-            dir = new Vector3(dir.x, -dir.z, dir.y);
+            Vector3 dir = other.transform.rotation.eulerAngles;
+
+            Debug.Log(dir);
+
+            dir = new Vector3(0, dir.y + dir.z - 180, 0);
             model.transform.rotation = Quaternion.Euler(dir);
             transform.position = other.transform.position + other.transform.forward * 0.5f;
 
