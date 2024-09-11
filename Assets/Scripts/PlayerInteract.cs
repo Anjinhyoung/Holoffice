@@ -16,7 +16,7 @@ public class PlayerInteract : MonoBehaviour
         playerManager = FindObjectOfType<PlayerManager>();
         playerMove = GetComponent<PlayerMove>();
         camController = GetComponentInChildren<CameraController>();
-        model = transform.Find(playerManager.avatarPrefabs[playerManager.AvatarNum()].name + "(Clone)");
+        model = GetComponentInChildren<Animator>().transform;   //transform.Find(playerManager.avatarPrefabs[playerManager.AvatarNum()].name + "(Clone)");
 
     }
 
@@ -73,7 +73,6 @@ public class PlayerInteract : MonoBehaviour
         }
     }
 
-    
 
     private IEnumerator SitDelay()
     {

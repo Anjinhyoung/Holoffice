@@ -18,6 +18,8 @@ public class AvatarSelectionUI : MonoBehaviour
 
     void Start()
     {
+        playerManager = GameObject.Find("PlayerManager").GetComponent<PlayerManager>();
+
         if (playerManager.avatarPrefabs == null || playerManager.avatarPrefabs.Length == 0)
         {
             Debug.Log("아바타 프리펩 배열이 비어있거나 세팅이 안되었다");

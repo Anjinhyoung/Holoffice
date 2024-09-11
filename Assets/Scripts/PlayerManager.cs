@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : MonoBehaviourPun
 {
     public string playerName = null;
     public bool isSeat = false;
@@ -11,11 +12,11 @@ public class PlayerManager : MonoBehaviour
 
     private int avatarIndex = 0;
     private GameObject currentAvatarInstance;
+    private GameObject player;
 
 
     private void Awake()
     {
-
         DontDestroyOnLoad(gameObject);
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
@@ -41,39 +42,15 @@ public class PlayerManager : MonoBehaviour
     void LoadSelectedAvatar()
     {
         avatarIndex = PlayerPrefs.GetInt("SelectedAvatarIndex", 0);
+
         SpawnSelectedAvatar();
     }
 
     void SpawnSelectedAvatar()
     {
-        if (currentAvatarInstance != null)
-        {
-            Destroy(currentAvatarInstance);
-        }
-
         if(avatarIndex >= 0 && avatarIndex < avatarPrefabs.Length)
         {
-            GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
-            if (playerObject != null)
-            {
-                currentAvatarInstance = Instantiate(avatarPrefabs[avatarIndex], playerObject.transform);
-                currentAvatarInstance.transform.localPosition = Vector3.zero;
-                currentAvatarInstance.transform.localRotation = Quaternion.identity;
-
-                Animator animtor = currentAvatarInstance.GetComponent<Animator>();
-                if (animtor == null)
-                {
-                    animtor = currentAvatarInstance.AddComponent<Animator>();
-                }
-
-                animtor.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("PlayerAni");
-
-                animtor.applyRootMotion = false;
-            }
-            else
-            {
-                Debug.LogError("플레이어 오브젝트가 없다!");
-            }
+            StartCoroutine(SpawnPlayer());
         }
     }
 
@@ -85,5 +62,24 @@ public class PlayerManager : MonoBehaviour
     public int AvatarNum()
     {
         return avatarIndex;
+    }
+
+    IEnumerator SpawnPlayer()
+    {
+        yield return new WaitUntil(() => { return PhotonNetwork.InRoom; });
+
+        player = PhotonNetwork.Instantiate("Player" + avatarIndex, Vector3.zero, Quaternion.identity);
+        if (player != null)
+        {
+            currentAvatarInstance = player;
+
+            Animator animtor = currentAvatarInstance.GetComponentInChildren<Animator>();
+
+            animtor.applyRootMotion = false;
+        }
+        else
+        {
+            Debug.LogError("플레이어 오브젝트가 없다!");
+        }
     }
 }

@@ -7,18 +7,19 @@ public class PlayerMove : MonoBehaviour
     private CharacterController cc;
     private Transform model;
     private PlayerManager playerManager;
-    private Animator animator;
+    Animator animator;
+    Transform cam;
 
-    public Transform cam;
     public float moveSpeed = 5;     // 사용자 이동속도 
     public bool isSit = false;
     public bool isWrite = false;
 
     void Start()
     {
+        cam = Camera.main.transform;
         playerManager = FindObjectOfType<PlayerManager>();      // PlayerManager를 가진 컴포넌트 찾기 (하나만 존재할경우 사용)
         cc = GetComponent<CharacterController>();
-        model = transform.Find(playerManager.avatarPrefabs[playerManager.AvatarNum()].name + "(Clone)");    // Instantiate로 생성하여 뒤에 (Clone) 추가
+        model = GetComponentInChildren<Animator>().transform;   //transform.Find(playerManager.avatarPrefabs[playerManager.AvatarNum()].name + "(Clone)");    // Instantiate로 생성하여 뒤에 (Clone) 추가
 
         Cursor.lockState = CursorLockMode.Confined;
 
