@@ -12,6 +12,8 @@ public class AvatarSelectionUI : MonoBehaviour
     public Button lobbyButton;
     public PlayerManager playerManager;
     public Transform previewPoint;
+    public GameObject waitPanel;
+    public Button startButton;
 
     private int currAvatarIndex = 0;
     private GameObject currPreviewAvatar;
@@ -31,6 +33,7 @@ public class AvatarSelectionUI : MonoBehaviour
         prevButton.onClick.AddListener(PrevAvatar);
         selectButton.onClick.AddListener(SelectAvatar);
         lobbyButton.onClick.AddListener(GoLobby);
+        startButton.onClick.AddListener(StartWork);
 
 
         ShowAvatarPreview(currAvatarIndex);
@@ -52,7 +55,7 @@ public class AvatarSelectionUI : MonoBehaviour
     {
         playerManager.SetSelectedAvatar(currAvatarIndex);
 
-        SceneManager.LoadScene("PlayScene");
+        waitPanel.SetActive(true);
     }
 
     void GoLobby()
@@ -60,6 +63,10 @@ public class AvatarSelectionUI : MonoBehaviour
         SceneManager.LoadScene("");
     }
 
+    void StartWork()
+    {
+        SceneManager.LoadScene("PlayScene");
+    }
     void ShowAvatarPreview(int index)
     {
         if (currPreviewAvatar != null)
@@ -69,4 +76,6 @@ public class AvatarSelectionUI : MonoBehaviour
 
         currPreviewAvatar = Instantiate(playerManager.avatarPrefabs[index], previewPoint.position, previewPoint.rotation);
     }
+
+    
 }

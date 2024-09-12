@@ -21,6 +21,12 @@ public class PlayerManager : MonoBehaviourPun
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
+    private void Start()
+    {
+        PhotonNetwork.SerializationRate = 30;
+        PhotonNetwork.SendRate = 30;
+    }
+
     public void SetSelectedAvatar(int index)
     {
         if (index >= 0 && index < avatarPrefabs.Length)
@@ -41,7 +47,7 @@ public class PlayerManager : MonoBehaviourPun
 
     void LoadSelectedAvatar()
     {
-        avatarIndex = PlayerPrefs.GetInt("SelectedAvatarIndex", 0);
+        //avatarIndex = PlayerPrefs.GetInt("SelectedAvatarIndex", 0);
 
         SpawnSelectedAvatar();
     }

@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,13 +32,16 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
-        camera = Camera.main;
-        currCamState = CamState.Third;
+        if (GetComponentInParent<PhotonView>().IsMine)
+        {
+            camera = Camera.main;
+            currCamState = CamState.Third;
 
-        Vector3 angles = camera.transform.eulerAngles;
-        curRotX = angles.y;
-        curRotY = angles.x;
-        curPos = transform.position;
+            Vector3 angles = camera.transform.eulerAngles;
+            curRotX = angles.y;
+            curRotY = angles.x;
+            curPos = transform.position;
+        }
 
         // CamPos와 타겟 사이의 거리를 나타내는 백터
         dir = new Vector3(0, 0, -distance);
@@ -57,7 +61,10 @@ public class CameraController : MonoBehaviour
 
     private void LateUpdate()
     {
-        CamMove();
+        if (GetComponentInParent<PhotonView>().IsMine)
+        {
+            CamMove();
+        }
     }
 
     void CamRot()
