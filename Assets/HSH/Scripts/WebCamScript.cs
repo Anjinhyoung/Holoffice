@@ -28,13 +28,13 @@ public class WebCamScript : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha1) && webcamTexture.isPlaying == false)
+        if(Input.GetKeyDown(KeyCode.Alpha5) && webcamTexture.isPlaying == false)
         {
             webcamTexture.Play();
             webcamDisplay.enabled = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha2) && webcamTexture.isPlaying == true)
+        if (Input.GetKeyDown(KeyCode.Alpha6) && webcamTexture.isPlaying == true)
         {
             webcamTexture.Pause();
             webcamDisplay.enabled = false;
