@@ -1,10 +1,11 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public Camera Camera;
+    public Camera camera;
     public Transform target;
     public float distance = 7f;
     public float delay = 10f;
@@ -31,12 +32,16 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
-        currCamState = CamState.Third;
+        if (GetComponentInParent<PhotonView>().IsMine)
+        {
+            camera = Camera.main;
+            currCamState = CamState.Third;
 
-        Vector3 angles = Camera.transform.eulerAngles;
-        curRotX = angles.y;
-        curRotY = angles.x;
-        curPos = transform.position;
+            Vector3 angles = camera.transform.eulerAngles;
+            curRotX = angles.y;
+            curRotY = angles.x;
+            curPos = transform.position;
+        }
 
         // CamPos와 타겟 사이의 거리를 나타내는 백터
         dir = new Vector3(0, 0, -distance);
@@ -56,7 +61,10 @@ public class CameraController : MonoBehaviour
 
     private void LateUpdate()
     {
-        CamMove();
+        if (GetComponentInParent<PhotonView>().IsMine)
+        {
+            CamMove();
+        }
     }
 
     void CamRot()
@@ -89,9 +97,9 @@ public class CameraController : MonoBehaviour
             goPos = lastPos; 
             // 카메라의 위치 설정
             curPos = goPos;
-            Camera.transform.position = curPos;
+            camera.transform.position = curPos;
 
-            Camera.transform.rotation = rotation;
+            camera.transform.rotation = rotation;
         }
         else if (currCamState == CamState.Third)
         {
@@ -103,11 +111,11 @@ public class CameraController : MonoBehaviour
             goPos = lastPos;
             // 카메라의 위치 설정
             curPos = Vector3.Lerp(curPos, goPos, delay * Time.deltaTime);
-            Camera.transform.position = curPos;
+            camera.transform.position = curPos;
 
             // 카메라의 방향 설정
             Vector3 lookAt = target.position;
-            Camera.transform.LookAt(lookAt);
+            camera.transform.LookAt(lookAt);
         }
         else if (currCamState == CamState.Computer)
         {
@@ -145,7 +153,7 @@ public class CameraController : MonoBehaviour
         {
             currCamState = CamState.First;
             curPos = target.position + Vector3.up * sitOffsetY;
-            Camera.transform.position = curPos;
+            camera.transform.position = curPos;
         }
     }
 

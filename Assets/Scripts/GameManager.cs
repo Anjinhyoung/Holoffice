@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Photon.Pun;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviourPun
 {
     public Transform camPos;
-
     public Transform name;
 
     static GameManager instance;
@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        
     }
 
     private void Update()

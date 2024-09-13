@@ -16,7 +16,7 @@ public class PlayerInteract : MonoBehaviour
         playerManager = FindObjectOfType<PlayerManager>();
         playerMove = GetComponent<PlayerMove>();
         camController = GetComponentInChildren<CameraController>();
-        model = transform.Find(playerManager.avatarPrefabs[playerManager.AvatarNum()].name + "(Clone)");
+        model = GetComponentInChildren<Animator>().transform;   //transform.Find(playerManager.avatarPrefabs[playerManager.AvatarNum()].name + "(Clone)");
 
     }
 
@@ -57,8 +57,11 @@ public class PlayerInteract : MonoBehaviour
         {
             //other.GetComponent<MeshCollider>().enabled = false;
 
-            Vector3 dir = other.transform.localRotation.eulerAngles;
-            dir = new Vector3(dir.x, -dir.z, dir.y);
+            Vector3 dir = other.transform.rotation.eulerAngles;
+
+            Debug.Log(dir);
+
+            dir = new Vector3(0, dir.y + dir.z - 180, 0);
             model.transform.rotation = Quaternion.Euler(dir);
             transform.position = other.transform.position + other.transform.forward * 0.5f;
 
@@ -70,7 +73,6 @@ public class PlayerInteract : MonoBehaviour
         }
     }
 
-    
 
     private IEnumerator SitDelay()
     {

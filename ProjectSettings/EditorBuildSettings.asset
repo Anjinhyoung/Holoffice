@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/HSH/Scenes/H_LobbyScene.unity
+    guid: 61b6628f9b4f4c54b8a2085005225043
+  - enabled: 1
     path: Assets/Scenes/AvatarSelectScene.unity
     guid: d9dfe78b4170c634597b8f375c9880f2
   - enabled: 1
