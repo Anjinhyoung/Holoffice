@@ -22,7 +22,10 @@ public class HttpInfo
 
 }
 
-
+public struct TextInfo
+{
+    public string input_text;
+}
 public class HttpManager : MonoBehaviour
 {
     static HttpManager instance;
@@ -54,6 +57,8 @@ public class HttpManager : MonoBehaviour
 
     // https://e098-222-103-183-137.ngrok-free.app/redoc
 
+    
+    
     public IEnumerator Get(HttpInfo info)
     {
         using (UnityWebRequest webRequest = UnityWebRequest.Get(info.url))
@@ -64,6 +69,8 @@ public class HttpManager : MonoBehaviour
             DoneRequest(webRequest, info);
         }
     }
+    
+    
 
     public IEnumerator Post(HttpInfo info)
     {
@@ -76,6 +83,7 @@ public class HttpManager : MonoBehaviour
         }
     }
 
+    
     public IEnumerator UploadFilebyByte(HttpInfo info)
     {
         // Infodata 에는 파일의 위치
@@ -109,7 +117,8 @@ public class HttpManager : MonoBehaviour
             DoneRequest(webRequest, info);
         }
     }
-
+    
+    
 
     void DoneRequest(UnityWebRequest webRequest, HttpInfo info)
     {
@@ -128,14 +137,5 @@ public class HttpManager : MonoBehaviour
             // error 의 이유를 출력
             Debug.LogError("에러는 : " + webRequest.error);
         }
-    }
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
     }
 }
