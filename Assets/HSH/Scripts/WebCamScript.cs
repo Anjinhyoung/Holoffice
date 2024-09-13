@@ -28,16 +28,17 @@ public class WebCamScript : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha5) && webcamTexture.isPlaying == false)
+        if (Input.GetKeyDown(KeyCode.M))
         {
-            webcamTexture.Play();
-            webcamDisplay.enabled = true;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha6) && webcamTexture.isPlaying == true)
-        {
-            webcamTexture.Pause();
-            webcamDisplay.enabled = false;
+            webcamDisplay.enabled = !webcamDisplay.enabled;
+            if (webcamDisplay.enabled)
+            {
+                webcamTexture.Pause();
+            }
+            else
+            {
+                webcamTexture.Play();
+            }
         }
     }
 }
