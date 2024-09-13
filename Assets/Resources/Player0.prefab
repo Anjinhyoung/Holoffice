@@ -441,6 +441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a4810d42ef6a245b5d9cf511bcb2bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  model: {fileID: 0}
   moveSpeed: 5
   isSit: 0
   isWrite: 0

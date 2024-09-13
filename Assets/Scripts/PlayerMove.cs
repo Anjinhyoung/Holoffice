@@ -6,29 +6,35 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviourPun, IPunObservable
 {
     private CharacterController cc;
-    private Transform model;
+    public Transform model;
     private PlayerManager playerManager;
     Animator animator;
     Transform cam;
     PhotonView pv;
     Vector3 myPos;
+    Vector3 movedir;
     Vector3 myRot;
 
     public float moveSpeed = 5;     // 사용자 이동속도 
     public bool isSit = false;
     public bool isWrite = false;
 
-    void Start()
+    private void Awake()
     {
         cam = Camera.main.transform;
         playerManager = FindObjectOfType<PlayerManager>();      // PlayerManager를 가진 컴포넌트 찾기 (하나만 존재할경우 사용)
         cc = GetComponent<CharacterController>();
-        model = GetComponentInChildren<Animator>().transform;   //transform.Find(playerManager.avatarPrefabs[playerManager.AvatarNum()].name + "(Clone)");    // Instantiate로 생성하여 뒤에 (Clone) 추가
+        model = GetComponentInChildren<Animator>().gameObject.transform;   //transform.Find(playerManager.avatarPrefabs[playerManager.AvatarNum()].name + "(Clone)");    // Instantiate로 생성하여 뒤에 (Clone) 추가
         pv = GetComponent<PhotonView>();
 
         //Cursor.lockState = CursorLockMode.Confined;
 
         animator = GetComponentInChildren<Animator>();
+    }
+
+    void Start()
+    {
+        
     }
 
     void Update()
@@ -62,9 +68,9 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
                 forward.Normalize();
                 right.Normalize();
 
-                Vector3 movedir = (forward * dir.z + right * dir.x).normalized;
+                movedir = (forward * dir.z + right * dir.x).normalized;
 
-                model.transform.forward = movedir;
+                model.transform.forward = Vector3.Lerp(model.transform.forward, movedir, Time.deltaTime * 10);
 
                 cc.Move(movedir * moveSpeed * Time.deltaTime);
 
@@ -76,8 +82,16 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
         }
         else
         {
-            transform.position = myPos;
-            model.transform.forward = myRot;
+            if (Vector3.Distance(transform.position, myPos) > 0.1f)
+            {
+                animator.SetBool("IsWalk", true);
+                model.transform.forward = Vector3.Lerp(model.transform.forward, myRot, Time.deltaTime * 10);
+            }
+            else
+            {
+                animator.SetBool("IsWalk",false);
+            }
+                transform.position = Vector3.Lerp(transform.position, myPos, Time.deltaTime * 10);
         }
         
     }
@@ -100,7 +114,7 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
         {
             // iterable 데이터를 보낸다
             stream.SendNext(transform.position);
-            stream.SendNext(model.transform.forward);
+            stream.SendNext(movedir);
         }
         else if (stream.IsReading)
         {

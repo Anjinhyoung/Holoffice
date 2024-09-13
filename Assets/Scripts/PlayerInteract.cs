@@ -1,9 +1,9 @@
-using Photon.Pun.Demo.PunBasics;
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInteract : MonoBehaviour
+public class PlayerInteract : MonoBehaviourPun
 {
     private PlayerManager playerManager;
     private CameraController camController;
@@ -27,30 +27,37 @@ public class PlayerInteract : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Chair"))
-        {
-            if (Input.GetKeyDown(KeyCode.C))
-            {
-                Sit(other);
-            }
-        }
+        PhotonView pv = other.GetComponent<PhotonView>();
 
-        if (other.gameObject.layer == LayerMask.NameToLayer("Laptop"))
+        if (pv.IsMine)
         {
-            if (playerMove.isSit && !playerMove.isWrite)
+            if (other.gameObject.layer == LayerMask.NameToLayer("Chair"))
             {
-                toUI = other.gameObject.GetComponent<ToUI>();
-                if (Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.C))
                 {
-                    toUI.OpenNote();
-                    // 카메라 상태를 컴퓨터 줌 상태로 변환
-                    camController.CamStateChange(CameraController.CamState.Computer);
-                    playerMove.Write();
+                    Sit(other);
+                }
+            }
+
+            if (other.gameObject.layer == LayerMask.NameToLayer("Laptop"))
+            {
+                if (playerMove.isSit && !playerMove.isWrite)
+                {
+                    toUI = other.gameObject.GetComponent<ToUI>();
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        toUI.OpenNote();
+                        // 카메라 상태를 컴퓨터 줌 상태로 변환
+                        camController.CamStateChange(CameraController.CamState.Computer);
+                        playerMove.Write();
+                    }
                 }
             }
         }
     }
 
+
+    [PunRPC]
     private void Sit(Collider other)
     {
         if (playerMove.isSit == false)
