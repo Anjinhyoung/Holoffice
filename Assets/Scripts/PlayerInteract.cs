@@ -80,7 +80,7 @@ public class PlayerInteract : MonoBehaviourPun
         }
     }
 
-
+    [PunRPC]
     private IEnumerator SitDelay()
     {
         playerMove.SitAni();
@@ -88,6 +88,7 @@ public class PlayerInteract : MonoBehaviourPun
         yield return new WaitForSeconds(1.5f);
     }
 
+    [PunRPC]
     private IEnumerator StandDelay()
     {
         playerMove.SitAni();
