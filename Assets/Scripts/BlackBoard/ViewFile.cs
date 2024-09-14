@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class ViewFile : MonoBehaviour
 {
-    /*
     [SerializeField]
     GameObject note;
-
     [SerializeField]
-    GameObject
-    */
+    GameObject fileDir;
+
+    public void File_On()
+    {
+        note.SetActive(false);
+        fileDir.SetActive(true);
+    }
 }
