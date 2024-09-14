@@ -88,14 +88,12 @@ public class DirectoryController : MonoBehaviour
         }
 
 
-        // 3, 선택한 목록(data)이 파일이면 확장자에 따라 처리
+        // 3, 선택한 목록(data)이 파일이면 확장자에 따라 처리 => 이거는 좀 더 고민
         foreach(FileInfo file in currentDirectory.GetFiles())
         {
             if (data.Equals(file.Name))
             {
                 // Debug.Log($"선택한 파일의 이름: {file.FullName}");
-
-
                 fileLoaderSystem.LoadFile(file);
             }
         }

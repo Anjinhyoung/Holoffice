@@ -82,6 +82,4 @@ public class Data : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, I
             textDataName.color = Color.white;
         }
     }
-
-
 }
