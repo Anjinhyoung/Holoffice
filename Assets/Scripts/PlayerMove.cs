@@ -32,10 +32,6 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
         animator = GetComponentInChildren<Animator>();
     }
 
-    void Start()
-    {
-        
-    }
 
     void Update()
     {

@@ -11,23 +11,24 @@ public class PlayerInteract : MonoBehaviourPun
     private ToUI toUI;
     public PlayerMove playerMove;
 
+    PhotonView pv;
+
     void Start()
     {
         playerManager = FindObjectOfType<PlayerManager>();
         playerMove = GetComponent<PlayerMove>();
         camController = GetComponentInChildren<CameraController>();
         model = GetComponentInChildren<Animator>().transform;   //transform.Find(playerManager.avatarPrefabs[playerManager.AvatarNum()].name + "(Clone)");
-
-    }
-
-    void Update()
-    {
         
     }
 
+
     private void OnTriggerStay(Collider other)
     {
-        PhotonView pv = other.GetComponent<PhotonView>();
+        if (pv != null)
+        {
+            pv = GetComponent<PhotonView>();
+        }
 
         if (pv.IsMine)
         {
@@ -80,7 +81,6 @@ public class PlayerInteract : MonoBehaviourPun
         }
     }
 
-    [PunRPC]
     private IEnumerator SitDelay()
     {
         playerMove.SitAni();
@@ -88,7 +88,6 @@ public class PlayerInteract : MonoBehaviourPun
         yield return new WaitForSeconds(1.5f);
     }
 
-    [PunRPC]
     private IEnumerator StandDelay()
     {
         playerMove.SitAni();
