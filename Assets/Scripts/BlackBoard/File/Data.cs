@@ -11,13 +11,16 @@ public class Data : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, I
 {
     [SerializeField]
     Sprite[] spriteIcons; // 아이콘에 적용할 수 있는 Sprite 이미지
+
     Image imageIcon; // 파일의 속성에 따라 아이콘 출력
     TextMeshProUGUI textDataName; // 파일의 이름 출력
 
     DataType dataType; // 파일의 속성
 
     string fileName; // 파일 이름
-    public string FileName => fileName; //  외부에서 확인하기 위한 Get 프로퍼티(읽기 전용) => 한 번 선생님한테 질문하기 직접 초기화 vs 프로퍼티
+    public string FileName => fileName; //  외부에서 확인하기 위한 Get 프로퍼티(읽기 전용) => 한 번 선생님한테 질문하기 직접 초기화 vs 프로퍼티 (참고로 이거 람다 함수 씀)
+    // 즉 외부에서 FileName 프로퍼티를 호출하면 내부의 fileName 값을 얻는 것
+    
 
     int maxFileNameLength = 25; // 파일 이름의 최대 길이
 

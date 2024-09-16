@@ -12,6 +12,8 @@ public class DirectoryController : MonoBehaviour
     DirectoryInfo currentDirectory; // 현재 폴더
     DirectorySpawner directorySpawner; // 현재 경로에 있는 폴더, 파일 정보 생성/ 삭제 제어
 
+    
+
     private void Awake()
     {
         // 프로그램이 최상단에 활성화 상태가 아니어도 플레이 => 유니티가 포커스를 잃거나 다른 창이 활성화되더라도 실행이 중단되지 않고 계속 작동
@@ -25,7 +27,7 @@ public class DirectoryController : MonoBehaviour
         // Environment.SpecialFolder: 윈도우에 존재하는 특수 폴더 열거형
         string desktopFolder = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
         defaultDirectory = new DirectoryInfo(desktopFolder);
-        currentDirectory = new DirectoryInfo(desktopFolder);
+        currentDirectory = new DirectoryInfo(desktopFolder); // 매개변수로 문자열을 넣어야 한다.
 
         // 현재 폴더에 존재하는 디렉토리, 파일 생성
         UpdateDirectory(currentDirectory);
@@ -51,7 +53,7 @@ public class DirectoryController : MonoBehaviour
         // 현재 경로 설정
         currentDirectory = directory;
 
-        // 현재 폴더에 존재하는 모든 폴더, 파일 PanelData 생성 (재귀 함수 사용)
+        // 현재 폴더에 존재하는 모든 폴더, 파일 PanelData 생성 (재귀 함수 사용)_1
         directorySpawner.UpdateDirectory(currentDirectory);
     }
 
@@ -93,7 +95,6 @@ public class DirectoryController : MonoBehaviour
         {
             if (data.Equals(file.Name))
             {
-                // Debug.Log($"선택한 파일의 이름: {file.FullName}");
                 fileLoaderSystem.LoadFile(file);
             }
         }
