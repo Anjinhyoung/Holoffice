@@ -1142,7 +1142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &142130768
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7832,12 +7832,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 957481494}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d471dd0d7750367448564a4912734b39, type: 3}
+  m_Script: {fileID: 11500000, guid: a9a975327a9f4684c93d33639bea2a0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mouse_Start: 0
   mouse_End: 0
-  drag_on: 0
   block: 0
 --- !u!4 &960062069 stripped
 Transform:
@@ -15950,7 +15949,6 @@ GameObject:
   - component: {fileID: 1983165417}
   - component: {fileID: 1983165416}
   - component: {fileID: 1983165419}
-  - component: {fileID: 1983165420}
   m_Layer: 5
   m_Name: Language_button
   m_TagString: Untagged
@@ -16023,20 +16021,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1983165419}
-        m_TargetAssemblyTypeName: Bold, Assembly-CSharp
-        m_MethodName: Bold_Check
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1983165420}
-        m_TargetAssemblyTypeName: MaintainFocus, Assembly-CSharp
-        m_MethodName: OnButtonClick
+        m_TargetAssemblyTypeName: Bold_Re_Challenge, Assembly-CSharp
+        m_MethodName: Button_On
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16093,22 +16079,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1983165414}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56d52b656ed864c49a5d3433d008bddb, type: 3}
+  m_Script: {fileID: 11500000, guid: 167ad9b6b9d8d7e458e7e9300d7eae96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drag_InputField: {fileID: 957481496}
---- !u!114 &1983165420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1983165414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de64bb444d6a04e4690b1098102d3259, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  note_bold: {fileID: 0}
 --- !u!1 &1984327186
 GameObject:
   m_ObjectHideFlags: 0

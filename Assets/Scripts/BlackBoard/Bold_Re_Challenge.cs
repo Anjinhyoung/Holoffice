@@ -1,13 +1,15 @@
-using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
+using UnityEngine;
+
 
 public class Bold_Re_Challenge : MonoBehaviour
 {
-    TextMeshPro note_wrtie;
+    [SerializeField]
+    TMP_Text note_bold;
 
-    private void Awake()
+
+    public void Button_On()
     {
-        note_wrtie = GetComponent<TextMeshPro>();
+
     }
 }
