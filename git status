@@ -1,0 +1,121 @@
+[33mcommit 8277a4ce63eedfbef8780f517a4e4471a39bac97[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mnew-branch[m[33m, [m[1;31morigin/Merge_0903[m[33m, [m[1;32mmain[m[33m)[m
+Merge: 0a1fba1 97548d3
+Author: RootLoop <phg0517@gmail.com>
+Date:   Tue Sep 3 18:00:48 2024 +0900
+
+    Merge branch 'HSH_0827' of https://github.com/githeed/Holoffice into Merge_0903
+
+[33mcommit 0a1fba1bb146f7409cf6cc757c0a80ff46e29444[m[33m ([m[1;31morigin/AniMake[m[33m)[m
+Author: RootLoop <phg0517@gmail.com>
+Date:   Tue Sep 3 17:52:10 2024 +0900
+
+    nickname
+
+[33mcommit 97548d3a14d096ab18f43cf42ffdd40bcc09c4cb[m
+Author: githeed <tmdgmldhk11@gmail.com>
+Date:   Tue Sep 3 17:46:38 2024 +0900
+
+    11
+
+[33mcommit da71b2e2a08fa6f849556bc4783506577c6d2ddf[m
+Author: RootLoop <phg0517@gmail.com>
+Date:   Mon Sep 2 22:01:12 2024 +0900
+
+    CameraFix/Animation
+
+[33mcommit 9379e44f4653cf720990c8c4806f47d8fff2b3bb[m
+Author: RootLoop <phg0517@gmail.com>
+Date:   Mon Sep 2 16:02:59 2024 +0900
+
+    how
+
+[33mcommit 196e7f61b7133fa30ba09097d02789a8242570cd[m[33m ([m[1;31morigin/Ani[m[33m)[m
+Author: RootLoop <phg0517@gmail.com>
+Date:   Mon Sep 2 15:23:53 2024 +0900
+
+    Del Ani
+
+[33mcommit 32fdefe5f9d5d926df49d7b20b25f4d6d7b4f821[m
+Author: RootLoop <phg0517@gmail.com>
+Date:   Mon Sep 2 09:17:44 2024 +0900
+
+    Ani asset
+
+[33mcommit 794da0f78c8edf44c2f9cbbb0e9a1d6cf68940e4[m[33m ([m[1;31morigin/Avatar[m[33m)[m
+Author: RootLoop <phg0517@gmail.com>
+Date:   Mon Sep 2 09:14:44 2024 +0900
+
+    Sketchfab connect
+
+[33mcommit b9f61b3c012d62d497c84a2e57bd5568e0e00556[m
+Author: RootLoop <phg0517@gmail.com>
+Date:   Mon Sep 2 09:13:50 2024 +0900
+
+    AvatarSelectScene
+
+[33mcommit 408742f886fde92e2090c82242385467114c24a5[m
+Author: githeed <tmdgmldhk11@gmail.com>
+Date:   Sun Sep 1 17:28:20 2024 +0900
+
+    11
+
+[33mcommit 2702170013cdaed6176f2b16de1eb11df270818d[m
+Author: RootLoop <phg0517@gmail.com>
+Date:   Fri Aug 30 19:05:34 2024 +0900
+
+    AvatarSelect
+
+[33mcommit 5e056abe796ab73b2a255179f39da6ae0afdb1e3[m
+Merge: bb49c9a 375b7f3
+Author: RootLoop <phg0517@gmail.com>
+Date:   Thu Aug 29 16:04:41 2024 +0900
+
+    Merge branch 'HSH_0827' of https://github.com/githeed/Holoffice into Start
+
+[33mcommit 375b7f35f55c5552e9301b26ef92e62080b4a733[m
+Author: githeed <tmdgmldhk11@gmail.com>
+Date:   Thu Aug 29 16:03:15 2024 +0900
+
+    11
+
+[33mcommit bb49c9a26e484b0f3e80ebfc8069ee260292b2be[m[33m ([m[1;31morigin/CameraWork[m[33m)[m
+Author: RootLoop <phg0517@gmail.com>
+Date:   Wed Aug 28 23:00:09 2024 +0900
+
+    CameraFinish
+
+[33mcommit 76f057af1f9d7308333661ea4126fc352ecc1f79[m
+Author: RootLoop <phg0517@gmail.com>
+Date:   Wed Aug 28 22:29:16 2024 +0900
+
+    Camera
+
+[33mcommit 1624c0eb67cb258e394c030908cc4f9c98f6ce99[m
+Author: RootLoop <phg0517@gmail.com>
+Date:   Wed Aug 28 17:09:27 2024 +0900
+
+    CameraPos
+
+[33mcommit 3b72fb7439a1b9c4df5863825bc0f5569e8a0571[m
+Author: RootLoop <phg0517@gmail.com>
+Date:   Tue Aug 27 18:41:15 2024 +0900
+
+    camWorking
+
+[33mcommit c43524f9c5ab86c6850bce742656ec2bb8126b5f[m
+Author: RootLoop <phg0517@gmail.com>
+Date:   Tue Aug 27 10:45:15 2024 +0900
+
+    assetInput
+
+[33mcommit 3cdf60c4bb3341489ba8a48e23758f73398f0327[m
+Author: githeed <tmdgmldhk11@gmail.com>
+Date:   Tue Aug 27 09:57:44 2024 +0900
+
+    11
+
+[33mcommit 84842db34119bbfec65f8bb191a51cccf8313a87[m
+Author: githeed <135950902+githeed@users.noreply.github.com>
+Date:   Tue Aug 27 09:48:54 2024 +0900
+
+    Initial commit
