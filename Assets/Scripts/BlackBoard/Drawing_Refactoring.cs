@@ -54,9 +54,13 @@ public class Drawing_Refactoring : MonoBehaviour
         change_Button_Color.normalColor = Color.green;
         pen_Button.colors = change_Button_Color;
 
-        // 지우개 버튼 햐얀색으로 바꾸고 활성화하기
+        // 지우개 버튼 햐얀색으로 바꾸고 비활성화하기
         Erase_Refactoring.erase_Active = false;
         Erase_Refactoring.Button_Off();
+
+        // 휴지통 버튼 하얀색으로 바꾸고 비활성화하기
+        trash.trash_Active = false;
+        trash.Button_Off();
     }
 
     public static void Button_Off()
