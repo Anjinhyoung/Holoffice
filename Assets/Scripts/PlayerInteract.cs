@@ -19,7 +19,7 @@ public class PlayerInteract : MonoBehaviourPun
         playerMove = GetComponent<PlayerMove>();
         camController = GetComponentInChildren<CameraController>();
         model = GetComponentInChildren<Animator>().transform;   //transform.Find(playerManager.avatarPrefabs[playerManager.AvatarNum()].name + "(Clone)");
-        
+        pv = GetComponent<PhotonView>();
     }
 
 
@@ -30,48 +30,52 @@ public class PlayerInteract : MonoBehaviourPun
             pv = GetComponent<PhotonView>();
         }
 
-        if (pv.IsMine)
+
+        if (other.gameObject.layer == LayerMask.NameToLayer("Chair"))
         {
-            if (other.gameObject.layer == LayerMask.NameToLayer("Chair"))
+            if (pv.IsMine)
             {
                 if (Input.GetKeyDown(KeyCode.C))
                 {
-                    Sit(other);
+                    RPC_Sit(other.transform.position, other.transform.forward, other.transform.rotation);
                 }
             }
+        }
 
-            if (other.gameObject.layer == LayerMask.NameToLayer("Laptop"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Laptop"))
+        {
+            if (playerMove.isSit && !playerMove.isWrite && pv.IsMine)
             {
-                if (playerMove.isSit && !playerMove.isWrite)
+                toUI = other.gameObject.GetComponent<ToUI>();
+                if (Input.GetKeyDown(KeyCode.E))
                 {
-                    toUI = other.gameObject.GetComponent<ToUI>();
-                    if (Input.GetKeyDown(KeyCode.E))
-                    {
-                        toUI.OpenNote();
-                        // 카메라 상태를 컴퓨터 줌 상태로 변환
-                        camController.CamStateChange(CameraController.CamState.Computer);
-                        playerMove.Write();
-                    }
+                    toUI.OpenNote();
+                    // 카메라 상태를 컴퓨터 줌 상태로 변환
+                    camController.CamStateChange(CameraController.CamState.Computer);
+                    playerMove.RPC_Write();
                 }
             }
         }
     }
 
+    public void RPC_Sit(Vector3 pos, Vector3 front, Quaternion rot)
+    {
+        pv.RPC("Sit", RpcTarget.All, pos, front, rot);
+    }
 
     [PunRPC]
-    private void Sit(Collider other)
+    private void Sit(Vector3 pos, Vector3 front, Quaternion rot)
     {
         if (playerMove.isSit == false)
         {
             //other.GetComponent<MeshCollider>().enabled = false;
-
-            Vector3 dir = other.transform.rotation.eulerAngles;
+            Vector3 dir = rot.eulerAngles;
 
             Debug.Log(dir);
 
             dir = new Vector3(0, dir.y + dir.z - 180, 0);
             model.transform.rotation = Quaternion.Euler(dir);
-            transform.position = other.transform.position + other.transform.forward * 0.5f;
+            transform.position = pos + front * 0.5f;
 
             StartCoroutine(SitDelay());
         }

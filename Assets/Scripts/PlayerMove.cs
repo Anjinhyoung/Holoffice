@@ -92,11 +92,23 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
         
     }
 
+    public void RPC_SitAni()
+    {
+        pv.RPC("SitAni", RpcTarget.All);
+    }
+
+    [PunRPC]
     public void SitAni()
     {
         animator.SetBool("IsSit", !isSit);
     }
 
+    public void RPC_Write()
+    {
+        pv.RPC("Write", RpcTarget.All);
+    }
+
+    [PunRPC]
     public void Write()
     {
         animator.SetBool("IsWrite", !isWrite);
