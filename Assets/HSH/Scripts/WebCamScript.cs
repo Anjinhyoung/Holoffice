@@ -1,15 +1,25 @@
+using Photon.Pun;
+using Photon.Voice.PUN;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WebCamScript : MonoBehaviour
+public class WebCamScript : MonoBehaviour, IPunObservable
 {
-    public RawImage webcamDisplay;
+    RawImage webcamDisplay;
     WebCamTexture webcamTexture;
+    RawImage voiceIcon;
+    PhotonView pv;
+    PhotonVoiceView voiceView;
+    bool isTalking = false;
 
     void Start()
     {
+        webcamDisplay = transform.GetChild(0).GetChild(0).GetComponent<RawImage>();
+        pv = GetComponent<PhotonView>();
+        voiceView = GetComponent<PhotonVoiceView>();
+
         // 모든 웹캠 장치 목록을 가져옵니다.
         WebCamDevice[] devices = WebCamTexture.devices;
 
@@ -28,17 +38,51 @@ public class WebCamScript : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
+        if (pv.IsMine)
         {
-            webcamDisplay.enabled = !webcamDisplay.enabled;
-            if (webcamDisplay.enabled)
+            // 현재 말을 하고 있다면 보이스 아이콘을 활성화한다.
+            voiceIcon.gameObject.SetActive(voiceView.IsRecording);
+            if (Input.GetKeyDown(KeyCode.M))
             {
-                webcamTexture.Pause();
+                RPC_PlayWebCam();
             }
-            else
-            {
-                webcamTexture.Play();
-            }
+        }
+        else
+        {
+            voiceIcon.gameObject.SetActive(isTalking);
+        }
+    }
+
+    void RPC_PlayWebCam()
+    {
+        pv.RPC("PlayWebCam", RpcTarget.AllBuffered);
+    }
+
+    [PunRPC]
+    void PlayWebCam()
+    {
+        webcamDisplay.enabled = !webcamDisplay.enabled;
+        if (webcamDisplay.enabled)
+        {
+            webcamTexture.Pause();
+        }
+        else
+        {
+            webcamTexture.Play();
+        }
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        // 만일, 데이터를 서버에 전송(PhotonView.IsMine == true)하는 상태라면...
+        if (stream.IsWriting)
+        {
+            stream.SendNext(voiceView.IsRecording);
+        }
+        // 그렇지 않고, 만일 데이터를 서버로부터 읽어오는 상태라면...
+        else if (stream.IsReading)
+        {
+            isTalking = (bool)stream.ReceiveNext();
         }
     }
 }
