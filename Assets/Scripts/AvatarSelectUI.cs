@@ -60,7 +60,7 @@ public class AvatarSelectionUI : MonoBehaviour
 
     void GoLobby()
     {
-        SceneManager.LoadScene("");
+        SceneManager.LoadScene("H_LobbyScene");
     }
 
     void StartWork()

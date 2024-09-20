@@ -82,6 +82,7 @@ public class PlayerInteract : MonoBehaviourPun
         else if (playerMove.isSit == true && !playerMove.isWrite)
         {
             StartCoroutine(StandDelay());
+
         }
     }
 
@@ -96,6 +97,7 @@ public class PlayerInteract : MonoBehaviourPun
     {
         playerMove.SitAni();
         yield return new WaitForSeconds(2.5f);
+        transform.position = new Vector3(transform.position.x, 0, transform.position.z)- model.transform.forward * 1.5f;
         playerMove.isSit = false;
     }
 }
