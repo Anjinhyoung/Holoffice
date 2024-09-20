@@ -6,8 +6,6 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
-
-
 public class Summary : MonoBehaviour
 {
     [SerializeField]
@@ -19,7 +17,7 @@ public class Summary : MonoBehaviour
     [SerializeField]
     Text summary_object;
 
-    
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -41,7 +39,7 @@ public class Summary : MonoBehaviour
         info.onComplete = (DownloadHandler downloadHandler) =>
         {
             print(downloadHandler.text);
-            summary_object.text = downloadHandler.text; 
+            summary_object.text = downloadHandler.text;
         };
         StartCoroutine(HttpManager.GetInstance().Post(info));
     }

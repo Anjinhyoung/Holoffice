@@ -1142,7 +1142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &142130768
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6110,7 +6110,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -6545,6 +6545,7 @@ GameObject:
   - component: {fileID: 797186627}
   - component: {fileID: 797186626}
   - component: {fileID: 797186625}
+  - component: {fileID: 797186628}
   m_Layer: 5
   m_Name: Language_button2
   m_TagString: Untagged
@@ -6594,8 +6595,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0, g: 0, b: 0, a: 1}
+    m_PressedColor: {r: 1, g: 0, b: 0, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -6615,7 +6616,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 797186626}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 797186628}
+        m_TargetAssemblyTypeName: Italic, Assembly-CSharp
+        m_MethodName: Button_On
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &797186626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6654,6 +6667,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 797186623}
   m_CullTransparentMesh: 1
+--- !u!114 &797186628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797186623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1b82b2b86d23e64885fc06652b1bd87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  italic_note: {fileID: 734979128}
+  italic_Active: 0
 --- !u!1001 &801081350
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7659,7 +7686,6 @@ GameObject:
   - component: {fileID: 957481498}
   - component: {fileID: 957481496}
   - component: {fileID: 957481497}
-  - component: {fileID: 957481499}
   m_Layer: 5
   m_Name: Note_write_2
   m_TagString: Untagged
@@ -7739,7 +7765,7 @@ MonoBehaviour:
   m_InputType: 0
   m_AsteriskChar: 42
   m_KeyboardType: 0
-  m_LineType: 0
+  m_LineType: 2
   m_HideMobileInput: 0
   m_HideSoftKeyboard: 0
   m_CharacterValidation: 0
@@ -7823,21 +7849,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 957481494}
   m_CullTransparentMesh: 1
---- !u!114 &957481499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 957481494}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9a975327a9f4684c93d33639bea2a0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouse_Start: 0
-  mouse_End: 0
-  block: 0
 --- !u!4 &960062069 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: a4f29f93f6cf7c844b4c2bbbf5fb3e9f,
@@ -15760,6 +15771,7 @@ GameObject:
   - component: {fileID: 1955897134}
   - component: {fileID: 1955897133}
   - component: {fileID: 1955897132}
+  - component: {fileID: 1955897135}
   m_Layer: 5
   m_Name: Language_button3
   m_TagString: Untagged
@@ -15830,7 +15842,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1955897133}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1955897135}
+        m_TargetAssemblyTypeName: FontSize, Assembly-CSharp
+        m_MethodName: Button_On
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1955897133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15869,6 +15893,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1955897130}
   m_CullTransparentMesh: 1
+--- !u!114 &1955897135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955897130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d36a2cdee477c4841adeddcd71945ec1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  note: {fileID: 734979128}
 --- !u!4 &1957038221 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: a0c5c31f3a72cb5489d25412535caaab,
@@ -15998,9 +16035,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 0, b: 0, a: 1}
-    m_PressedColor: {r: 0.19385743, g: 1, b: 0, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0, g: 0, b: 0, a: 1}
+    m_PressedColor: {r: 1, g: 0, b: 0.010231495, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -16082,7 +16119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 167ad9b6b9d8d7e458e7e9300d7eae96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  note_bold: {fileID: 0}
+  note_bold: {fileID: 734979128}
+  bold_Active: 0
 --- !u!1 &1984327186
 GameObject:
   m_ObjectHideFlags: 0
