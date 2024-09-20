@@ -9,6 +9,9 @@ public class PaintToText : MonoBehaviour
     GameObject paint_Button;
     GameObject paint_Collection;
 
+    [SerializeField]
+    GameObject fileDir;
+
     // 텍스트 버튼을 눌렀을 경우
 
     public void To_Text()
@@ -24,5 +27,7 @@ public class PaintToText : MonoBehaviour
         gameObject.SetActive(false);
         // 그림판 버튼 활성화
         paint_Button.SetActive(true);
+
+        fileDir.SetActive(false);
     }
 }
