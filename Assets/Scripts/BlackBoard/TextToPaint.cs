@@ -10,6 +10,9 @@ public class TextToPaint : MonoBehaviour
 
     GameObject text_Collection;
 
+    [SerializeField]
+    GameObject fileDir;
+
     private void Awake()
     {
         // 비활성화 되면 뜨지 않는다.
@@ -31,6 +34,10 @@ public class TextToPaint : MonoBehaviour
 
         // 마지막 텍스트 버튼이 보이게 하고
         text_Button.SetActive(true);
+
+
+
+        fileDir.SetActive(false);
 
     }
 }

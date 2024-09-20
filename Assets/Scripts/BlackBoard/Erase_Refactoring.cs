@@ -37,9 +37,13 @@ public class Erase_Refactoring : MonoBehaviour
         change_Button_Color.normalColor = Color.green;
         erase_Button.colors = change_Button_Color;
 
-        // pen 버튼 하얀색으로 바꾸고 기능 끄기
+        // pen 버튼 하얀색으로 바꾸고 비활성화하기
         Drawing_Refactoring.pen_Active = false;
         Drawing_Refactoring.Button_Off();
+
+        // 휴지통 버튼 하얀색으로 바꾸고 비활성화하기
+        trash.trash_Active = false;
+        trash.Button_Off();
     }
 
     public static void Button_Off()
