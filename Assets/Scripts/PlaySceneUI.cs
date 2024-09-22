@@ -12,7 +12,6 @@ public class PlaySceneUI : MonoBehaviourPun, IOnEventCallback
     public Button btn_Chat;
     public Button btn_Exit;
     public GameObject panel_Chat;
-    public Button btn_InputChat;
     public TMP_Text text_chat;
     public ScrollRect scroll_Chat;
     public TMP_InputField input_Chat; 
@@ -71,7 +70,7 @@ public class PlaySceneUI : MonoBehaviourPun, IOnEventCallback
         if(photonEvent.Code == chattingEvent) 
         {
             object[] receiveObjects = (object[])photonEvent.CustomData;
-            string receiveMessage = $"\n{receiveObjects[0].ToString()}: {receiveObjects[1].ToString()}";
+            string receiveMessage = $"{receiveObjects[0].ToString()}: {receiveObjects[1].ToString()}\n";
 
             text_chat.text += receiveMessage;
 
