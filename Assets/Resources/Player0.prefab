@@ -1148,6 +1148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 0}
+  nickName: {fileID: 3623121946239908701}
   moveSpeed: 5
   isSit: 0
   isWrite: 0
