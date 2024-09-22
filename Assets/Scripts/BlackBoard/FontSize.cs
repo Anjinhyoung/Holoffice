@@ -4,11 +4,12 @@ using TMPro;
 public class FontSize : MonoBehaviour
 {
     [SerializeField]
-    TMP_Text note;
+    GameObject fontSize;
 
+    bool active = false;
     public void Button_On()
     {
-        note.fontSize += 10;
+        active = !active;
+        fontSize.SetActive(active);
     }
-
 }
