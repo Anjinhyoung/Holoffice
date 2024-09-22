@@ -16,8 +16,8 @@ public class Image_Upload : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI textFileData; // 파일 이름, 해상도, 용량
 
-    float maxWidth = 550; // Image UI 최대 크기
-    float maxHeight = 500;
+    float maxWidth = 850; // Image UI 최대 크기
+    float maxHeight = 555;
 
     public void OnLoad(FileInfo file)
     {
