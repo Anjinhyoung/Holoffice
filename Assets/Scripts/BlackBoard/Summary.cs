@@ -67,15 +67,6 @@ public class Summary : MonoBehaviour
 
     private bool isRequestInProgress = false; // 서버 요청 중인지 여부를 저장하는 플래그
 
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0) && !isRequestInProgress) // 마우스 왼쪽 버튼 클릭 시, 요청 중이 아닐 때만 실행
-        {
-            ai_note.SetActive(true);
-            To_Summary();
-        }
-    }
-
     public void To_Summary()
     {
         isRequestInProgress = true; // 서버 요청 시작 시 플래그를 true로 설정
@@ -93,5 +84,6 @@ public class Summary : MonoBehaviour
             isRequestInProgress = false; // 서버 응답이 완료되면 플래그를 false로 설정
         };
         StartCoroutine(HttpManager.GetInstance().Post(info));
+        ai_note.SetActive(true);
     }
 }
