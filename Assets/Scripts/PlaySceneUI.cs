@@ -21,9 +21,15 @@ public class PlaySceneUI : MonoBehaviourPun, IOnEventCallback
 
     const byte chattingEvent = 1;
 
+    private void OnEnable()
+    {
+        PhotonNetwork.NetworkingClient.AddCallbackTarget(this);
+    }
+
     void Start()
     {
         input_Chat.text = "";
+        text_chat.text = "";
 
         btn_Chat.onClick.AddListener(OpenChat);
         btn_Exit.onClick.AddListener(Exit);
@@ -40,7 +46,7 @@ public class PlaySceneUI : MonoBehaviourPun, IOnEventCallback
         eventOptions.Receivers = ReceiverGroup.All;
         eventOptions.CachingOption = EventCaching.DoNotCache;
 
-        PhotonNetwork.RaiseEvent(1, sendContent, eventOptions, SendOptions.SendUnreliable);
+        PhotonNetwork.RaiseEvent(chattingEvent, sendContent, eventOptions, SendOptions.SendUnreliable);
     }
 
 
@@ -65,9 +71,16 @@ public class PlaySceneUI : MonoBehaviourPun, IOnEventCallback
         if(photonEvent.Code == chattingEvent) 
         {
             object[] receiveObjects = (object[])photonEvent.CustomData;
-            string receiveMessage = $"{receiveObjects[0].ToString()}: {receiveObjects[1].ToString()}";
+            string receiveMessage = $"\n{receiveObjects[0].ToString()}: {receiveObjects[1].ToString()}";
 
             text_chat.text += receiveMessage;
+
+            input_Chat.text = "";
         }
+    }
+
+    private void OnDisable()
+    {
+        PhotonNetwork.NetworkingClient.RemoveCallbackTarget(this);
     }
 }

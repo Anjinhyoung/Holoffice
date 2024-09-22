@@ -1147,6 +1147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 0}
+  nickName: {fileID: 3623121946239908701}
   moveSpeed: 5
   isSit: 0
   isWrite: 0
@@ -1313,6 +1314,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   webcamDisplay: {fileID: 8335219474474066621}
+  voiceIcon: {fileID: 0}
+  text_Chat: {fileID: 0}
 --- !u!1 &4167438362792414183
 GameObject:
   m_ObjectHideFlags: 0

@@ -82,10 +82,13 @@ public class PlayerManager : MonoBehaviourPun
             Animator animtor = currentAvatarInstance.GetComponentInChildren<Animator>();
 
             animtor.applyRootMotion = false;
+
         }
         else
         {
             Debug.LogError("플레이어 오브젝트가 없다!");
         }
     }
+
+
 }

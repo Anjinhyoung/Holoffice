@@ -1,6 +1,7 @@
 using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviourPun, IPunObservable
@@ -14,6 +15,7 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
     Vector3 myPos;
     Vector3 movedir;
     Vector3 myRot;
+    public TMP_Text nickName;
 
     public float moveSpeed = 5;     // 사용자 이동속도 
     public bool isSit = false;
@@ -30,6 +32,8 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
         //Cursor.lockState = CursorLockMode.Confined;
 
         animator = GetComponentInChildren<Animator>();
+
+        nickName.text = photonView.Owner.NickName;
     }
 
 
@@ -41,6 +45,7 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
         }
 
     }
+
 
     void Move()
     {
