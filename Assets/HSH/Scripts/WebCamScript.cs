@@ -40,11 +40,14 @@ public class WebCamScript : MonoBehaviour, IPunObservable
     {
         if (pv.IsMine)
         {
-            // 현재 말을 하고 있다면 보이스 아이콘을 활성화한다.
-            voiceIcon.gameObject.SetActive(voiceView.IsRecording);
-            if (Input.GetKeyDown(KeyCode.M))
+            if (voiceView != null)
             {
-                RPC_PlayWebCam();
+                // 현재 말을 하고 있다면 보이스 아이콘을 활성화한다.
+                voiceIcon.gameObject.SetActive(voiceView.IsRecording);
+                if (Input.GetKeyDown(KeyCode.M))
+                {
+                    RPC_PlayWebCam();
+                }
             }
         }
         else
