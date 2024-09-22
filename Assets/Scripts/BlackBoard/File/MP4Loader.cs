@@ -145,7 +145,10 @@ public class MP4Loader : MonoBehaviour
             textMaxPlaytime.text = $"{hour:D2}:{minutes:D2}:{seconds:D2}";
 
             // Slider에 표시되는 재생 시간 설정
-            sliderPlaybar.value = (float)(VideoPlayer.time / VideoPlayer.clip.length);
+            if (VideoPlayer.clip != null) // clip이 null이 아닌 경우에만 슬라이더 업데이트
+            {
+                sliderPlaybar.value = (float)(VideoPlayer.time / VideoPlayer.clip.length);
+            }
 
             yield return new WaitForSeconds(1);
         }
