@@ -32,7 +32,6 @@ public class PlaySceneUI : MonoBehaviourPun, IOnEventCallback
 
         btn_Chat.onClick.AddListener(OpenChat);
         btn_Exit.onClick.AddListener(Exit);
-        btn_InputChat.onClick.AddListener(InputChat);
 
         input_Chat.onSubmit.AddListener(SendMyMessage);
 
