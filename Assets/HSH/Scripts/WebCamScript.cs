@@ -5,12 +5,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WebCamScript : MonoBehaviour, IPunObservable
+public class WebCamScript : MonoBehaviourPun, IPunObservable
 {
     public RawImage webcamDisplay;
     public Image voiceIcon;
-    public Text text_Chat;
-
 
     WebCamTexture webcamTexture;
     PhotonView pv;
@@ -22,7 +20,6 @@ public class WebCamScript : MonoBehaviour, IPunObservable
         //webcamDisplay = transform.GetChild(0).GetChild(0).GetComponent<RawImage>();
         pv = GetComponent<PhotonView>();
         voiceView = GetComponent<PhotonVoiceView>();
-        text_Chat.text = "";
         // 모든 웹캠 장치 목록을 가져옵니다.
         WebCamDevice[] devices = WebCamTexture.devices;
 
@@ -41,19 +38,25 @@ public class WebCamScript : MonoBehaviour, IPunObservable
 
     void Update()
     {
-        if (pv.IsMine)
+        if(voiceView != null)
         {
-            // 현재 말을 하고 있다면 보이스 아이콘을 활성화한다.
-            //voiceIcon.gameObject.SetActive(voiceView.IsRecording);
-            if (Input.GetKeyDown(KeyCode.M))
+
+            voiceIcon.gameObject.SetActive(voiceView.IsRecording);
+
+            if (pv.IsMine)
             {
-                RPC_PlayWebCam();
+                // 현재 말을 하고 있다면 보이스 아이콘을 활성화한다.
+                if (Input.GetKeyDown(KeyCode.M))
+                {
+                    RPC_PlayWebCam();
+                }
+            }
+            else
+            {
+                voiceIcon.gameObject.SetActive(isTalking);
             }
         }
-        else
-        {
-            //voiceIcon.gameObject.SetActive(isTalking);
-        }
+
     }
 
     void RPC_PlayWebCam()
@@ -69,11 +72,11 @@ public class WebCamScript : MonoBehaviour, IPunObservable
 
         if (webcamDisplay.enabled)
         {
-            webcamTexture.Stop();
+            webcamTexture.Play();
         }
         else
         {
-            webcamTexture.Play();
+            webcamTexture.Stop();
         }
     }
 
