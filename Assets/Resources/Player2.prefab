@@ -1797,6 +1797,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e3bebd9acd6e7a4c8aeb81d8854c0fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  webcamDisplay: {fileID: 7398495669582607591}
+  voiceIcon: {fileID: 888821540341690474}
 --- !u!1 &5962430819406450518
 GameObject:
   m_ObjectHideFlags: 0
@@ -2131,7 +2133,6 @@ GameObject:
   - component: {fileID: 6545467126742548424}
   - component: {fileID: 394283865944593295}
   - component: {fileID: 2426131925822923747}
-  - component: {fileID: 8000976068065424230}
   m_Layer: 5
   m_Name: Panel_FaceChat
   m_TagString: Untagged
@@ -2197,18 +2198,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8000976068065424230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8672788353688328222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e3bebd9acd6e7a4c8aeb81d8854c0fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &9135443881965803205
 GameObject:
   m_ObjectHideFlags: 0
