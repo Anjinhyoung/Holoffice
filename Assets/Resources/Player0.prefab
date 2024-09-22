@@ -1312,7 +1312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e3bebd9acd6e7a4c8aeb81d8854c0fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  webcamDisplay: {fileID: 0}
+  webcamDisplay: {fileID: 8335219474474066621}
 --- !u!1 &4167438362792414183
 GameObject:
   m_ObjectHideFlags: 0

@@ -2124,6 +2124,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e3bebd9acd6e7a4c8aeb81d8854c0fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  webcamDisplay: {fileID: 3715127215891355870}
+  voiceIcon: {fileID: 803064654303756136}
 --- !u!1 &8245337388687436846
 GameObject:
   m_ObjectHideFlags: 0
