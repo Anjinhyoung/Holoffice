@@ -1095,7 +1095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5ed96c717349374c95c215bbd4a3021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
+  canvas: {fileID: 853192939}
 --- !u!65 &337124691
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1445,7 +1445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5ed96c717349374c95c215bbd4a3021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
+  canvas: {fileID: 853192939}
 --- !u!65 &556968089
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1775,7 +1775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5ed96c717349374c95c215bbd4a3021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
+  canvas: {fileID: 853192939}
 --- !u!65 &658115892
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1922,7 +1922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5ed96c717349374c95c215bbd4a3021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
+  canvas: {fileID: 853192939}
 --- !u!65 &678011885
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2770,6 +2770,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e733918aa29f5e45afd5fe782ce4eb5, type: 3}
+--- !u!223 &853192939 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 4317641877398156773, guid: 8e733918aa29f5e45afd5fe782ce4eb5,
+    type: 3}
+  m_PrefabInstance: {fileID: 853192938}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &867790815
 GameObject:
   m_ObjectHideFlags: 0
@@ -3743,7 +3749,7 @@ PrefabInstance:
     - target: {fileID: 2960313096342062848, guid: 6b3d02da12618fc4cb6a1113ba413f70,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 425.72
+      value: 304.09
       objectReference: {fileID: 0}
     - target: {fileID: 2960313096342062848, guid: 6b3d02da12618fc4cb6a1113ba413f70,
         type: 3}
@@ -3753,7 +3759,7 @@ PrefabInstance:
     - target: {fileID: 2960313096342062848, guid: 6b3d02da12618fc4cb6a1113ba413f70,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -222.86
+      value: -162.045
       objectReference: {fileID: 0}
     - target: {fileID: 3029337741404854771, guid: 6b3d02da12618fc4cb6a1113ba413f70,
         type: 3}
@@ -3793,7 +3799,7 @@ PrefabInstance:
     - target: {fileID: 4576256015586082734, guid: 6b3d02da12618fc4cb6a1113ba413f70,
         type: 3}
       propertyPath: m_text
-      value: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+      value: "\uD55C\uAD6D\uC5B4\uD14C\uC2A4\uD2B8\uD55E\uAD75\uC5BD\uD164\uC2AF\uD2C7\n\uD55C\uAD6D\uC5B4\uD14C\uC2A4\uD2B8\uD55E\uAD75\uC5BD\uD164\uC2AF\uD2C7\uD55C\uAD6D\uC5B4\uD14C\uC2A4\uD2B8\uD55E\uAD75\uC5BD\uD164\uC2AF\uD2C7\uD55C\uAD6D\uC5B4\uD14C\uC2A4\uD2B8\uD55E\uAD75\uC5BD\uD164\uC2AF\uD2C7\uD55C\uAD6D\uC5B4\uD14C\uC2A4\uD2B8\uD55E\uAD75\uC5BD\uD164\uC2AF\uD2C7\uD55C\uAD6D\uC5B4\uD14C\uC2A4\uD2B8\uD55E\uAD75\uC5BD\uD164\uC2AF\uD2C7"
       objectReference: {fileID: 0}
     - target: {fileID: 4576256015586082734, guid: 6b3d02da12618fc4cb6a1113ba413f70,
         type: 3}
@@ -3955,7 +3961,7 @@ PrefabInstance:
     - target: {fileID: 5457792723178161912, guid: 6b3d02da12618fc4cb6a1113ba413f70,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: -264.28
+      value: -385.91
       objectReference: {fileID: 0}
     - target: {fileID: 5457792723178161912, guid: 6b3d02da12618fc4cb6a1113ba413f70,
         type: 3}
@@ -4020,8 +4026,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8415657376276083510, guid: 6b3d02da12618fc4cb6a1113ba413f70,
         type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 56ca5fb31a2e8e845ae3f37ae19d9337,
+        type: 2}
+    - target: {fileID: 8415657376276083510, guid: 6b3d02da12618fc4cb6a1113ba413f70,
+        type: 3}
       propertyPath: m_fontSizeBase
       value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 8415657376276083510, guid: 6b3d02da12618fc4cb6a1113ba413f70,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2197374792472330711, guid: 56ca5fb31a2e8e845ae3f37ae19d9337,
+        type: 2}
+    - target: {fileID: 8415657376276083510, guid: 6b3d02da12618fc4cb6a1113ba413f70,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8622977344276030163, guid: 6b3d02da12618fc4cb6a1113ba413f70,
         type: 3}
@@ -4040,8 +4063,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9076871673680020220, guid: 6b3d02da12618fc4cb6a1113ba413f70,
         type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 56ca5fb31a2e8e845ae3f37ae19d9337,
+        type: 2}
+    - target: {fileID: 9076871673680020220, guid: 6b3d02da12618fc4cb6a1113ba413f70,
+        type: 3}
       propertyPath: m_fontSizeBase
       value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 9076871673680020220, guid: 6b3d02da12618fc4cb6a1113ba413f70,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2197374792472330711, guid: 56ca5fb31a2e8e845ae3f37ae19d9337,
+        type: 2}
+    - target: {fileID: 9076871673680020220, guid: 6b3d02da12618fc4cb6a1113ba413f70,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -4268,7 +4308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5ed96c717349374c95c215bbd4a3021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
+  canvas: {fileID: 853192939}
 --- !u!65 &1511049337
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4697,7 +4737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5ed96c717349374c95c215bbd4a3021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
+  canvas: {fileID: 853192939}
 --- !u!65 &1737173991
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4922,7 +4962,7 @@ MonoBehaviour:
   interestGroup: 0
   useTargetPlayers: 0
   targetPlayers: 
-  debugEchoMode: 1
+  debugEchoMode: 0
   reliableMode: 0
   encrypt: 0
   transmitEnabled: 1
@@ -7283,7 +7323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5ed96c717349374c95c215bbd4a3021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
+  canvas: {fileID: 853192939}
 --- !u!33 &4587060560067988644
 MeshFilter:
   m_ObjectHideFlags: 0
