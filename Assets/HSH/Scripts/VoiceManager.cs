@@ -7,19 +7,19 @@ using Photon.Voice.Unity;
 
 public class VoiceManager : MonoBehaviourPun
 {
-    GameObject speaker;
-    PunVoiceClient pvc;
-    GameObject pmg;
+    //GameObject speaker;
+    //PunVoiceClient pvc;
+    //GameObject pmg;
 
     Recorder recorder;
     // Start is called before the first frame update
     void Start()
     {
-        pmg = GameObject.Find("PlayerManager");
-        PlayerManager pm = pmg.GetComponent<PlayerManager>();
-        pvc = GetComponent<PunVoiceClient>();
-        speaker = Resources.Load<GameObject>("Player" + pm.AvatarNum());
-        pvc.SpeakerPrefab = speaker;
+        //pmg = GameObject.Find("PlayerManager");
+        //PlayerManager pm = pmg.GetComponent<PlayerManager>();
+        //pvc = GetComponent<PunVoiceClient>();
+        //speaker = Resources.Load<GameObject>("Player" + pm.AvatarNum());
+        //pvc.SpeakerPrefab = speaker;
 
         recorder = GetComponent<Recorder>();
 
