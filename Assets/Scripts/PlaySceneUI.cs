@@ -18,7 +18,7 @@ public class PlaySceneUI : MonoBehaviourPun, IOnEventCallback
     public TMP_Text playerCount;
     public GameObject RedDot;
 
-    bool chatOpen = false;
+    public bool chatOpen = false;
 
     const byte chattingEvent = 1;
 

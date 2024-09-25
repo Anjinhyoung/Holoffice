@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 7898130878828415820}
   - component: {fileID: 8072514632475169287}
   - component: {fileID: 8870681009945202597}
+  - component: {fileID: 6852859780610271410}
   m_Layer: 5
   m_Name: Canvas_FollowUI
   m_TagString: Untagged
@@ -179,6 +180,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &6852859780610271410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 211618237059864273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1238e679f87bf6c4bb22d4a97bde2beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 0}
 --- !u!1 &830964573250554896
 GameObject:
   m_ObjectHideFlags: 0

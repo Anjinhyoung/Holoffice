@@ -11,7 +11,14 @@ public class PlayerInteract : MonoBehaviourPun
     private ToUI toUI;
     public PlayerMove playerMove;
 
+    PlaySceneUI playSceneUI;
+
     PhotonView pv;
+
+    private void Awake()
+    {
+        pv = GetComponent<PhotonView>();
+    }
 
     void Start()
     {
@@ -19,7 +26,8 @@ public class PlayerInteract : MonoBehaviourPun
         playerMove = GetComponent<PlayerMove>();
         camController = GetComponentInChildren<CameraController>();
         model = GetComponentInChildren<Animator>().transform;   //transform.Find(playerManager.avatarPrefabs[playerManager.AvatarNum()].name + "(Clone)");
-        pv = GetComponent<PhotonView>();
+        
+        playSceneUI = FindObjectOfType<PlaySceneUI>();
     }
 
 
@@ -27,6 +35,7 @@ public class PlayerInteract : MonoBehaviourPun
     {
         if (!pv.IsMine) return;
 
+        if (playSceneUI.chatOpen) return;
 
         if (other.gameObject.layer == LayerMask.NameToLayer("Chair"))
         {
