@@ -16,7 +16,7 @@ public class WebCamScript : MonoBehaviourPun, IPunObservable, IOnEventCallback
 {
     public RawImage webcamDisplay;
     public Image voiceIcon;
-    public float sendSecond = 1.0f;
+    float sendSecond;
     //public int portNumber = 5000;
     //public string myIP = "192.168.0.38";
 
@@ -113,6 +113,8 @@ public class WebCamScript : MonoBehaviourPun, IPunObservable, IOnEventCallback
 
         webcamDisplay.texture = webcamTexture;
         webcamDisplay.enabled = false;
+
+        sendSecond = 0.5f;
     }
 
     void Update()
