@@ -14,7 +14,9 @@ public class PlaySceneUI : MonoBehaviourPun, IOnEventCallback
     public GameObject panel_Chat;
     public TMP_Text text_chat;
     public ScrollRect scroll_Chat;
-    public TMP_InputField input_Chat; 
+    public TMP_InputField input_Chat;
+    public TMP_Text playerCount;
+    public GameObject RedDot;
 
     bool chatOpen = false;
 
@@ -50,16 +52,13 @@ public class PlaySceneUI : MonoBehaviourPun, IOnEventCallback
 
     void OpenChat()
     {
-        panel_Chat.SetActive(!chatOpen);
         chatOpen = !chatOpen;
+        panel_Chat.SetActive(chatOpen);
+
+        RedDot.SetActive(false);
     }
 
     void Exit()
-    {
-
-    }
-
-    void InputChat()
     {
 
     }
@@ -74,11 +73,24 @@ public class PlaySceneUI : MonoBehaviourPun, IOnEventCallback
             text_chat.text += receiveMessage;
 
             input_Chat.text = "";
+
+            GetChat();
         }
+    }
+
+    public void GetChat()
+    {
+        if (!chatOpen)
+            RedDot.SetActive(true);
     }
 
     private void OnDisable()
     {
         PhotonNetwork.NetworkingClient.RemoveCallbackTarget(this);
+    }
+
+    public void SetPlayerCount(RoomInfo room)
+    {
+        playerCount.text = $"({room.PlayerCount}/{room.MaxPlayers})\t{room.Name}";
     }
 }

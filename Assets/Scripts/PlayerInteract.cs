@@ -25,64 +25,55 @@ public class PlayerInteract : MonoBehaviourPun
 
     private void OnTriggerStay(Collider other)
     {
-        if (pv != null)
-        {
-            pv = GetComponent<PhotonView>();
-        }
+        if (!pv.IsMine) return;
 
 
         if (other.gameObject.layer == LayerMask.NameToLayer("Chair"))
         {
-            if (pv.IsMine)
+            if (Input.GetKeyDown(KeyCode.C))
             {
-                if (Input.GetKeyDown(KeyCode.C))
-                {
-                    RPC_Sit(other.transform.position, other.transform.forward, other.transform.rotation);
-                }
+                RPC_Sit(other.transform.position, other.transform.rotation);
             }
         }
 
         if (other.gameObject.layer == LayerMask.NameToLayer("Laptop"))
         {
-            if (playerMove.isSit && !playerMove.isWrite && pv.IsMine)
+            if (playerMove.isSit && !playerMove.isWrite)
             {
                 toUI = other.gameObject.GetComponent<ToUI>();
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     toUI.OpenNote();
                     // 카메라 상태를 컴퓨터 줌 상태로 변환
-                    camController.CamStateChange(CameraController.CamState.Computer);
+                    //camController.CamStateChange(CameraController.CamState.Computer);
                     playerMove.RPC_Write();
                 }
             }
         }
     }
 
-    public void RPC_Sit(Vector3 pos, Vector3 front, Quaternion rot)
+    public void RPC_Sit(Vector3 pos, Quaternion rot)
     {
-        pv.RPC("Sit", RpcTarget.All, pos, front, rot);
+        pv.RPC("Sit", RpcTarget.All, pos, rot);
     }
 
     [PunRPC]
-    private void Sit(Vector3 pos, Vector3 front, Quaternion rot)
+    private void Sit(Vector3 chairPos, Quaternion chairRot)
     {
         if (playerMove.isSit == false)
         {
             //other.GetComponent<MeshCollider>().enabled = false;
-            Vector3 dir = rot.eulerAngles;
-
-            Debug.Log(dir);
+            Vector3 dir = chairRot.eulerAngles;
+            transform.position = chairPos + chairRot * Vector3.forward * 0.5f;
 
             dir = new Vector3(0, dir.y + dir.z - 180, 0);
-            model.transform.rotation = Quaternion.Euler(dir);
-            transform.position = pos + front * 0.5f;
+            model.rotation = Quaternion.Euler(dir);
 
             StartCoroutine(SitDelay());
         }
-        else if (playerMove.isSit == true && !playerMove.isWrite)
+        else if (!playerMove.isWrite)
         {
             StartCoroutine(StandDelay());
-
         }
     }
 

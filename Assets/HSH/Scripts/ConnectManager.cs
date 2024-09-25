@@ -19,7 +19,7 @@ public class ConnectManager : MonoBehaviourPunCallbacks
 
     void Start()
     {
-        Screen.SetResolution(640, 480, FullScreenMode.Windowed);
+        Screen.SetResolution(1280, 960, FullScreenMode.Windowed);
     }
 
     void Update()

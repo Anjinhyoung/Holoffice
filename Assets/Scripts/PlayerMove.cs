@@ -16,6 +16,7 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
     Vector3 movedir;
     Vector3 myRot;
     public TMP_Text nickName;
+    PlaySceneUI playUI;
 
     public float moveSpeed = 5;     // 사용자 이동속도 
     public bool isSit = false;
@@ -34,6 +35,7 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
         animator = GetComponentInChildren<Animator>();
 
         nickName.text = photonView.Owner.NickName;
+
     }
 
 
@@ -92,7 +94,7 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
             {
                 animator.SetBool("IsWalk",false);
             }
-                transform.position = Vector3.Lerp(transform.position, myPos, Time.deltaTime * 10);
+            transform.position = Vector3.Lerp(transform.position, myPos, Time.deltaTime * 10);
         }
         
     }
