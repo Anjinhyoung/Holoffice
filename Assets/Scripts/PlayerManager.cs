@@ -82,7 +82,6 @@ public class PlayerManager : MonoBehaviourPun
             Animator animtor = currentAvatarInstance.GetComponentInChildren<Animator>();
 
             animtor.applyRootMotion = false;
-
         }
         else
         {
