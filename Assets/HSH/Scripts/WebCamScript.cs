@@ -229,8 +229,8 @@ public class WebCamScript : MonoBehaviourPun, IPunObservable, IOnEventCallback
         {
             if (webcamDisplay.enabled)
             {
-                webCamCoroutine = StartCoroutine(SendWebCam());
                 webcamTexture.Play();
+                webCamCoroutine = StartCoroutine(SendWebCam());
             }
             else
             {
@@ -239,17 +239,6 @@ public class WebCamScript : MonoBehaviourPun, IPunObservable, IOnEventCallback
                     StopCoroutine(webCamCoroutine);
                 }
                 webcamTexture.Stop();
-            }
-        }
-        else
-        {
-            if (webcamDisplay.enabled)
-            {
-                webcamDisplay.texture = recievedTex;
-            }
-            else
-            {
-                webcamDisplay.texture = webcamTexture;
             }
         }
     } 
