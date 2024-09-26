@@ -26,12 +26,9 @@ public class VoiceManager : MonoBehaviourPun
         recorder.TransmitEnabled = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void MikeToggle()
     {
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            recorder.TransmitEnabled = !recorder.TransmitEnabled;
-        }
+        recorder.TransmitEnabled = !recorder.TransmitEnabled;
     }
+
 }

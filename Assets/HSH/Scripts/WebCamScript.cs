@@ -35,8 +35,8 @@ public class WebCamScript : MonoBehaviourPun, IPunObservable, IOnEventCallback
     const byte webcamEvent = 2;
 
     Coroutine webCamCoroutine;
-    
 
+    public Button btn_WebCam;
 
     //void InitializeUDPThread()
     //{
@@ -115,6 +115,10 @@ public class WebCamScript : MonoBehaviourPun, IPunObservable, IOnEventCallback
         webcamDisplay.enabled = false;
 
         sendSecond = 0.5f;
+
+        btn_WebCam = GameObject.Find("Btn_Cam").GetComponent<Button>();
+
+        btn_WebCam.onClick.AddListener(RPC_PlayWebCam);
     }
 
     void Update()
@@ -127,10 +131,6 @@ public class WebCamScript : MonoBehaviourPun, IPunObservable, IOnEventCallback
                 // 현재 말을 하고 있다면 보이스 아이콘을 활성화한다.
                 voiceIcon.gameObject.SetActive(voiceView.IsRecording);
 
-                if (Input.GetKeyDown(KeyCode.M))
-                {
-                    RPC_PlayWebCam();
-                }
             }
             else
             {
