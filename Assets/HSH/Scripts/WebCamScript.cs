@@ -16,6 +16,7 @@ public class WebCamScript : MonoBehaviourPun, IPunObservable, IOnEventCallback
 {
     public RawImage webcamDisplay;
     public Image voiceIcon;
+    public GameObject panel_faceChat;
     float sendSecond;
     //public int portNumber = 5000;
     //public string myIP = "192.168.0.38";
@@ -113,7 +114,7 @@ public class WebCamScript : MonoBehaviourPun, IPunObservable, IOnEventCallback
 
         webcamDisplay.texture = webcamTexture;
         webcamDisplay.enabled = false;
-
+        panel_faceChat.SetActive(false);
         sendSecond = 0.5f;
     }
 
@@ -253,6 +254,7 @@ public class WebCamScript : MonoBehaviourPun, IPunObservable, IOnEventCallback
     void PlayWebCam()
     {
         webcamDisplay.enabled = !webcamDisplay.enabled;
+        panel_faceChat.SetActive(webcamDisplay.enabled);
         //print(webcamDisplay.enabled ? "true" : "false");
     }
 
