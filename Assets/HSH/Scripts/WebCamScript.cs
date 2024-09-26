@@ -253,7 +253,7 @@ public class WebCamScript : MonoBehaviourPun, IPunObservable, IOnEventCallback
     void PlayWebCam()
     {
         webcamDisplay.enabled = !webcamDisplay.enabled;
-        print(webcamDisplay.enabled ? "true" : "false");
+        //print(webcamDisplay.enabled ? "true" : "false");
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -270,19 +270,19 @@ public class WebCamScript : MonoBehaviourPun, IPunObservable, IOnEventCallback
         }
     }
 
-    public Texture2D ScaleTexture(Texture2D source, float _scaleFactor)
+    public Texture2D ScaleTexture(Texture2D texture, float _scaleFactor)
     {
         if (_scaleFactor == 1f)
         {
-            return source;
+            return texture;
         }
         else if (_scaleFactor == 0f)
         {
             return Texture2D.blackTexture;
         }
 
-        int _newWidth = Mathf.RoundToInt(source.width * _scaleFactor);
-        int _newHeight = Mathf.RoundToInt(source.height * _scaleFactor);
+        int _newWidth = Mathf.RoundToInt(texture.width * _scaleFactor);
+        int _newHeight = Mathf.RoundToInt(texture.height * _scaleFactor);
 
         Color[] _scaledTexPixels = new Color[_newWidth * _newHeight];
 
@@ -295,17 +295,18 @@ public class WebCamScript : MonoBehaviourPun, IPunObservable, IOnEventCallback
             {
                 float _uCord = _xCord / (_newWidth * 1f);
 
-                _scaledTexPixels[_scanLineIndex + _xCord] = source.GetPixelBilinear(_uCord, _vCord);
+                _scaledTexPixels[_scanLineIndex + _xCord] = texture.GetPixelBilinear(_uCord, _vCord);
             }
         }
 
-        // Create Scaled Texture
-        Texture2D result = new Texture2D(_newWidth, _newHeight, source.format, false);
+        // resize 텍스쳐 생성
+        Texture2D result = new Texture2D(_newWidth, _newHeight, texture.format, false);
         result.SetPixels(_scaledTexPixels, 0);
         result.Apply();
 
         return result;
     }
+
     private void OnDisable()
     {
         //// UDP 스트림을 종료한다.
