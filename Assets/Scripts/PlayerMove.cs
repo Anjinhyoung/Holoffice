@@ -52,9 +52,14 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
 
         if (!isWrite && pv.IsMine)
         {
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 pv.RPC("HandUP", RpcTarget.All);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                pv.RPC("Clapping", RpcTarget.All);
             }
         }
     }
@@ -103,11 +108,11 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
             }
             else
             {
-                animator.SetBool("IsWalk",false);
+                animator.SetBool("IsWalk", false);
             }
             transform.position = Vector3.Lerp(transform.position, myPos, Time.deltaTime * 10);
         }
-        
+
     }
 
     public void RPC_SitAni()
@@ -139,14 +144,22 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
     {
         animator.SetLayerWeight(1, 1);
         animator.SetTrigger("HandRaise");
-        StartCoroutine(HandSet());
+        StartCoroutine(AnimationSet(1, 3));
     }
 
-    public IEnumerator HandSet()
+    [PunRPC]
+    public void Clapping()
     {
-        yield return new WaitForSeconds(3f);
+        animator.SetLayerWeight(2, 1);
+        animator.SetTrigger("Clapping");
+        StartCoroutine(AnimationSet(2, 5));
+    }
 
-        animator.SetLayerWeight(1, 0);
+    public IEnumerator AnimationSet(int layer, float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        animator.SetLayerWeight(layer, 0);
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
