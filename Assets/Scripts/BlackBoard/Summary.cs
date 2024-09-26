@@ -109,6 +109,8 @@ public class Summary : MonoBehaviour
 }
 */
 
+
+/*
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -157,7 +159,7 @@ public class Summary : MonoBehaviour
         Debug.Log("Generated URL: " + url);
 
         StartCoroutine(GetRequest(url));
-        ai_note.SetActive(true);
+        // ai_note.SetActive(true);
     }
 
     IEnumerator GetRequest(string url)
@@ -182,4 +184,94 @@ public class Summary : MonoBehaviour
         isRequestInProgress = false; // 서버 응답이 완료되면 플래그를 false로 설정
     }
 }
+
+*/
+
+using System.Collections;
+using UnityEngine;
+using UnityEngine.Networking;
+using UnityEngine.UI;
+using TMPro;
+
+[System.Serializable]
+public class SummaryResponse
+{
+    public string summary; // JSON에서 "summary"라는 필드를 받는다고 가정
+}
+
+public class Summary : MonoBehaviour
+{
+    [SerializeField]
+    TMP_Text note_text;
+
+    [SerializeField]
+    GameObject ai_note;
+
+    [SerializeField]
+    TMP_Text summary_object; // TMP_Text로 변경
+
+    private bool isRequestInProgress = false; // 서버 요청 중인지 여부를 저장하는 플래그
+
+    public void To_Summary()
+    {
+        if (isRequestInProgress) return; // 요청 중이면 중복 요청 방지
+        isRequestInProgress = true; // 서버 요청 시작 시 플래그를 true로 설정
+
+        string inputText = note_text.text;
+
+        // 로그 추가: inputText의 내용을 출력하여 원본 텍스트가 정확한지 확인
+        Debug.Log("Original inputText: " + inputText);
+
+        string url = "https://snake-hopeful-urchin.ngrok-free.app/summarize_meeting?input_text=" + UnityWebRequest.EscapeURL(inputText);
+
+        // 로그 추가: 최종적으로 만들어진 URL을 확인
+        Debug.Log("Generated URL: " + url);
+
+        StartCoroutine(GetRequest(url));
+    }
+
+    IEnumerator GetRequest(string url)
+    {
+        UnityWebRequest webRequest = UnityWebRequest.Get(url);
+
+        yield return webRequest.SendWebRequest();
+
+        if (webRequest.result == UnityWebRequest.Result.ConnectionError || webRequest.result == UnityWebRequest.Result.ProtocolError)
+        {
+            Debug.LogError("Error: " + webRequest.error);
+        }
+        else
+        {
+            // JSON 파싱
+            SummaryResponse response = JsonUtility.FromJson<SummaryResponse>(webRequest.downloadHandler.text);
+
+            // summary 텍스트에서 불필요한 부분 제거 및 볼드체 적용
+            string formattedSummary = FormatSummary(response.summary);
+
+            // 요약 내용 출력
+            summary_object.text = formattedSummary;
+        }
+
+        isRequestInProgress = false; // 서버 응답이 완료되면 플래그를 false로 설정
+    }
+
+    private string FormatSummary(string summary)
+    {
+        // "Summary:"와 "회의 논의 요약"이 포함된 부분 제거
+        summary = summary.Replace("Summary:", "").Replace("회의 논의 요약", "");
+
+        summary = summary.Replace("회의록 요약", "").Replace("회의록 요약", "");
+
+        summary = summary.Replace("**", "").Replace("**", "");
+
+        // "주요 논의 사항:"을 bold체로 변경
+        summary = summary.Replace("주요 논의 사항:", "<b>주요 논의 사항:</b>");
+
+        // "결정된 사항:"을 bold체로 변경
+        summary = summary.Replace("결정된 사항:", "<b>결정된 사항:</b>");
+
+        return summary.Trim(); // 불필요한 공백 제거 후 반환
+    }
+}
+
 
