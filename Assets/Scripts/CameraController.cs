@@ -20,6 +20,7 @@ public class CameraController : MonoBehaviour
     private Vector3 curPos;
     private Vector3 goPos;
 
+    PlaySceneUI playUI;
 
     public enum CamState
     {
@@ -41,7 +42,10 @@ public class CameraController : MonoBehaviour
             curRotX = angles.y;
             curRotY = angles.x;
             curPos = transform.position;
+
         }
+
+        playUI = FindObjectOfType<PlaySceneUI>();
 
         // CamPos와 타겟 사이의 거리를 나타내는 백터
         dir = new Vector3(0, 0, -distance);
@@ -53,6 +57,8 @@ public class CameraController : MonoBehaviour
         {
             if (Input.GetMouseButton(1))
                 CamRot();
+
+            if (playUI.chatOpen) return;
 
             if (Input.GetKeyDown(KeyCode.F))
                 ToggleCamState();

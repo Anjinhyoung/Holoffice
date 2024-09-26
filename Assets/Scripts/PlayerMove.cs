@@ -21,6 +21,7 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
     public float moveSpeed = 5;     // 사용자 이동속도 
     public bool isSit = false;
     public bool isWrite = false;
+    float temp = 1;
 
     private void Awake()
     {
@@ -36,16 +37,26 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
 
         nickName.text = photonView.Owner.NickName;
 
+        playUI = FindObjectOfType<PlaySceneUI>();
     }
 
 
     void Update()
     {
+        if (playUI.chatOpen) return;
+
         if (!isSit)
         {
             Move();
         }
 
+        if (!isWrite && pv.IsMine)
+        {
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                pv.RPC("HandUP", RpcTarget.All);
+            }
+        }
     }
 
 
@@ -121,6 +132,21 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
         animator.SetBool("IsWrite", !isWrite);
 
         isWrite = !isWrite;
+    }
+
+    [PunRPC]
+    public void HandUP()
+    {
+        animator.SetLayerWeight(1, 1);
+        animator.SetTrigger("HandRaise");
+        StartCoroutine(HandSet());
+    }
+
+    public IEnumerator HandSet()
+    {
+        yield return new WaitForSeconds(3f);
+
+        animator.SetLayerWeight(1, 0);
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
