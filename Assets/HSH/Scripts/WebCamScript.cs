@@ -158,10 +158,6 @@ public class WebCamScript : MonoBehaviourPun, IPunObservable, IOnEventCallback
         {
             object[] recievedObjects = (object[])photonEvent.CustomData;
             recievedTex = Base64ToTexture2D((byte[])recievedObjects[0]);
-            if(!pv.IsMine)
-            {
-                webcamDisplay.texture = recievedTex;
-            }
         }
     }
 
@@ -243,14 +239,9 @@ public class WebCamScript : MonoBehaviourPun, IPunObservable, IOnEventCallback
         }
         else
         {
-            if (webcamDisplay.enabled)
-            {
-                webcamDisplay.texture = recievedTex;
-            }
-            else
-            {
-                webcamDisplay.texture = webcamTexture;
-            }
+            
+             webcamDisplay.texture = recievedTex;
+            
         }
     } 
 
