@@ -37,8 +37,6 @@ public class WebCamScript : MonoBehaviourPun, IPunObservable, IOnEventCallback
 
     Coroutine webCamCoroutine;
     
-
-
     //void InitializeUDPThread()
     //{
     //    // 백그라운드에서 새 Thread를 실행하고 싶다.
@@ -122,7 +120,6 @@ public class WebCamScript : MonoBehaviourPun, IPunObservable, IOnEventCallback
     {
         if(voiceView != null)
         {
-
             if (pv.IsMine)
             {
                 // 현재 말을 하고 있다면 보이스 아이콘을 활성화한다.
@@ -272,38 +269,38 @@ public class WebCamScript : MonoBehaviourPun, IPunObservable, IOnEventCallback
         }
     }
 
-    public Texture2D ScaleTexture(Texture2D texture, float _scaleFactor)
+    public Texture2D ScaleTexture(Texture2D texture, float scaleFactor)
     {
-        if (_scaleFactor == 1f)
+        if (scaleFactor == 1f)
         {
             return texture;
         }
-        else if (_scaleFactor == 0f)
+        else if (scaleFactor == 0f)
         {
             return Texture2D.blackTexture;
         }
 
-        int _newWidth = Mathf.RoundToInt(texture.width * _scaleFactor);
-        int _newHeight = Mathf.RoundToInt(texture.height * _scaleFactor);
+        int newWidth = Mathf.RoundToInt(texture.width * scaleFactor);
+        int newHeight = Mathf.RoundToInt(texture.height * scaleFactor);
 
-        Color[] _scaledTexPixels = new Color[_newWidth * _newHeight];
+        Color[] scaledTexPixels = new Color[newWidth * newHeight];
 
-        for (int _yCord = 0; _yCord < _newHeight; _yCord++)
+        for (int yCord = 0; yCord < newHeight; yCord++)
         {
-            float _vCord = _yCord / (_newHeight * 1f);
-            int _scanLineIndex = _yCord * _newWidth;
+            float vCord = yCord / (newHeight * 1f);
+            int scanLineIndex = yCord * newWidth;
 
-            for (int _xCord = 0; _xCord < _newWidth; _xCord++)
+            for (int xCord = 0; xCord < newWidth; xCord++)
             {
-                float _uCord = _xCord / (_newWidth * 1f);
+                float uCord = xCord / (newWidth * 1f);
 
-                _scaledTexPixels[_scanLineIndex + _xCord] = texture.GetPixelBilinear(_uCord, _vCord);
+                scaledTexPixels[scanLineIndex + xCord] = texture.GetPixelBilinear(uCord, yCord);
             }
         }
 
         // resize 텍스쳐 생성
-        Texture2D result = new Texture2D(_newWidth, _newHeight, texture.format, false);
-        result.SetPixels(_scaledTexPixels, 0);
+        Texture2D result = new Texture2D(newWidth, newHeight, texture.format, false);
+        result.SetPixels(scaledTexPixels, 0);
         result.Apply();
 
         return result;
