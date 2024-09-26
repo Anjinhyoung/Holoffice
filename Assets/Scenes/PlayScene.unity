@@ -1095,7 +1095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5ed96c717349374c95c215bbd4a3021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
+  canvas: {fileID: 853192939}
 --- !u!65 &337124691
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1445,7 +1445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5ed96c717349374c95c215bbd4a3021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
+  canvas: {fileID: 853192939}
 --- !u!65 &556968089
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1775,7 +1775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5ed96c717349374c95c215bbd4a3021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
+  canvas: {fileID: 853192939}
 --- !u!65 &658115892
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1922,7 +1922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5ed96c717349374c95c215bbd4a3021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
+  canvas: {fileID: 853192939}
 --- !u!65 &678011885
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2770,6 +2770,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e733918aa29f5e45afd5fe782ce4eb5, type: 3}
+--- !u!223 &853192939 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 4317641877398156773, guid: 8e733918aa29f5e45afd5fe782ce4eb5,
+    type: 3}
+  m_PrefabInstance: {fileID: 853192938}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &867790815
 GameObject:
   m_ObjectHideFlags: 0
@@ -4697,7 +4703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5ed96c717349374c95c215bbd4a3021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
+  canvas: {fileID: 853192939}
 --- !u!65 &1737173991
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4922,7 +4928,7 @@ MonoBehaviour:
   interestGroup: 0
   useTargetPlayers: 0
   targetPlayers: 
-  debugEchoMode: 1
+  debugEchoMode: 0
   reliableMode: 0
   encrypt: 0
   transmitEnabled: 1
@@ -7283,7 +7289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5ed96c717349374c95c215bbd4a3021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
+  canvas: {fileID: 853192939}
 --- !u!33 &4587060560067988644
 MeshFilter:
   m_ObjectHideFlags: 0
