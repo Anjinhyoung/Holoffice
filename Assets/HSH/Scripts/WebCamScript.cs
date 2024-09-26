@@ -187,7 +187,7 @@ public class WebCamScript : MonoBehaviourPun, IPunObservable, IOnEventCallback
 
             object[] sendContent = new[] { binData };
 
-            // �̺�Ʈ �۽�
+            // �̺�Ʈ �۽�   
             PhotonNetwork.RaiseEvent(2, sendContent, eventOptions, SendOptions.SendUnreliable);
 
             yield return new WaitForSeconds(sendSecond);
