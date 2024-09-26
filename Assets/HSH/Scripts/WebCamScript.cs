@@ -16,6 +16,7 @@ public class WebCamScript : MonoBehaviourPun, IPunObservable, IOnEventCallback
 {
     public RawImage webcamDisplay;
     public Image voiceIcon;
+    public GameObject panel_faceChat;
     float sendSecond;
     //public int portNumber = 5000;
     //public string myIP = "192.168.0.38";
@@ -35,12 +36,13 @@ public class WebCamScript : MonoBehaviourPun, IPunObservable, IOnEventCallback
     const byte webcamEvent = 2;
 
     Coroutine webCamCoroutine;
+    
 
     public Button btn_WebCam;
 
     //void InitializeUDPThread()
     //{
-    //    // ¹é±×¶ó¿îµå¿¡¼­ »õ Thread¸¦ ½ÇÇàÇÏ°í ½Í´Ù.
+    //    // ï¿½ï¿½×¶ï¿½ï¿½å¿¡ï¿½ï¿½ ï¿½ï¿½ Threadï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Í´ï¿½.
     //    udpThread = new Thread(new ThreadStart(ReceiveData));
     //    udpThread.IsBackground = true;
     //    udpThread.Start();
@@ -61,7 +63,7 @@ public class WebCamScript : MonoBehaviourPun, IPunObservable, IOnEventCallback
     //    }
     //    catch (SocketException message)
     //    {
-    //        // Åë½Å ¿¡·¯ ÄÚµå ¹× ¿¡·¯ ³»¿ëÀ» Ãâ·ÂÇÑ´Ù.
+    //        // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
     //        Debug.LogError($"Error Code {message.ErrorCode} - {message}");
     //    }
     //    finally
@@ -72,13 +74,13 @@ public class WebCamScript : MonoBehaviourPun, IPunObservable, IOnEventCallback
 
     //void SendData()
     //{
-    //    // Å¬¶óÀÌ¾ðÆ®·Î¼­ ÁØºñ
+    //    // Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ®ï¿½Î¼ï¿½ ï¿½Øºï¿½
     //    sendPort = new UdpClient(portNumber);
     //    sendTex = new Texture2D(webcamTexture.width, webcamTexture.height);
     //    sendTex.SetPixels32(webcamTexture.GetPixels32());
     //    byte[] binData = sendTex.EncodeToPNG();
 
-    //    // µ¥ÀÌÅÍ¸¦ Àü¼ÛÇÑ´Ù.
+    //    // ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
     //    sendPort.Send(binData, binData.Length, myIP, 7000);
     //}
 
@@ -94,7 +96,7 @@ public class WebCamScript : MonoBehaviourPun, IPunObservable, IOnEventCallback
         //webcamDisplay = transform.GetChild(0).GetChild(0).GetComponent<RawImage>();
         pv = GetComponent<PhotonView>();
         voiceView = GetComponent<PhotonVoiceView>();
-        // ¸ðµç À¥Ä· ÀåÄ¡ ¸ñ·ÏÀ» °¡Á®¿É´Ï´Ù.
+        // ï¿½ï¿½ï¿½ ï¿½ï¿½Ä· ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½É´Ï´ï¿½.
         WebCamDevice[] devices = WebCamTexture.devices;
 
         if (devices.Length == 0)
@@ -103,17 +105,17 @@ public class WebCamScript : MonoBehaviourPun, IPunObservable, IOnEventCallback
             return;
         }
 
-        // Ã¹ ¹øÂ° À¥Ä·À» »ç¿ëÇÏ¿© WebCamTexture¸¦ »ý¼º
+        // Ã¹ ï¿½ï¿½Â° ï¿½ï¿½Ä·ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ WebCamTextureï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         webcamTexture = new WebCamTexture(devices[0].name);
         webcamTexture.requestedWidth = 50;
         webcamTexture.requestedHeight = 20;
 
-        // RawImage ÄÄÆ÷³ÍÆ®¿¡ À¥Ä· ¿µ»óÀ» ÇÒ´ç
+        // RawImage ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½Ä· ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò´ï¿½
 
 
         webcamDisplay.texture = webcamTexture;
         webcamDisplay.enabled = false;
-
+        panel_faceChat.SetActive(false);
         sendSecond = 0.5f;
 
         btn_WebCam = GameObject.Find("Btn_Cam").GetComponent<Button>();
@@ -125,10 +127,9 @@ public class WebCamScript : MonoBehaviourPun, IPunObservable, IOnEventCallback
     {
         if(voiceView != null)
         {
-
             if (pv.IsMine)
             {
-                // ÇöÀç ¸»À» ÇÏ°í ÀÖ´Ù¸é º¸ÀÌ½º ¾ÆÀÌÄÜÀ» È°¼ºÈ­ÇÑ´Ù.
+                // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï°ï¿½ ï¿½Ö´Ù¸ï¿½ ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È°ï¿½ï¿½È­ï¿½Ñ´ï¿½.
                 voiceIcon.gameObject.SetActive(voiceView.IsRecording);
 
             }
@@ -175,14 +176,14 @@ public class WebCamScript : MonoBehaviourPun, IPunObservable, IOnEventCallback
 
             byte[] binData = sendTex.EncodeToPNG();
 
-            // ¿É¼Ç
+            // ï¿½É¼ï¿½
             RaiseEventOptions eventOptions = new RaiseEventOptions();
             eventOptions.Receivers = ReceiverGroup.All;
             eventOptions.CachingOption = EventCaching.DoNotCache;
 
             object[] sendContent = new[] { binData };
 
-            // ÀÌº¥Æ® ¼Û½Å
+            // ï¿½Ìºï¿½Æ® ï¿½Û½ï¿½
             PhotonNetwork.RaiseEvent(2, sendContent, eventOptions, SendOptions.SendUnreliable);
 
             yield return new WaitForSeconds(sendSecond);
@@ -253,55 +254,56 @@ public class WebCamScript : MonoBehaviourPun, IPunObservable, IOnEventCallback
     void PlayWebCam()
     {
         webcamDisplay.enabled = !webcamDisplay.enabled;
+        panel_faceChat.SetActive(webcamDisplay.enabled);
         //print(webcamDisplay.enabled ? "true" : "false");
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        // ¸¸ÀÏ, µ¥ÀÌÅÍ¸¦ ¼­¹ö¿¡ Àü¼Û(PhotonView.IsMine == true)ÇÏ´Â »óÅÂ¶ó¸é...
+        // ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(PhotonView.IsMine == true)ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½Â¶ï¿½ï¿½...
         if (stream.IsWriting)
         {
             stream.SendNext(voiceView.IsRecording);
         }
-        // ±×·¸Áö ¾Ê°í, ¸¸ÀÏ µ¥ÀÌÅÍ¸¦ ¼­¹ö·ÎºÎÅÍ ÀÐ¾î¿À´Â »óÅÂ¶ó¸é...
+        // ï¿½×·ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½ ï¿½Ð¾ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¶ï¿½ï¿½...
         else if (stream.IsReading)
         {
             isTalking = (bool)stream.ReceiveNext();
         }
     }
 
-    public Texture2D ScaleTexture(Texture2D texture, float _scaleFactor)
+    public Texture2D ScaleTexture(Texture2D texture, float scaleFactor)
     {
-        if (_scaleFactor == 1f)
+        if (scaleFactor == 1f)
         {
             return texture;
         }
-        else if (_scaleFactor == 0f)
+        else if (scaleFactor == 0f)
         {
             return Texture2D.blackTexture;
         }
 
-        int _newWidth = Mathf.RoundToInt(texture.width * _scaleFactor);
-        int _newHeight = Mathf.RoundToInt(texture.height * _scaleFactor);
+        int newWidth = Mathf.RoundToInt(texture.width * scaleFactor);
+        int newHeight = Mathf.RoundToInt(texture.height * scaleFactor);
 
-        Color[] _scaledTexPixels = new Color[_newWidth * _newHeight];
+        Color[] scaledTexPixels = new Color[newWidth * newHeight];
 
-        for (int _yCord = 0; _yCord < _newHeight; _yCord++)
+        for (int yCord = 0; yCord < newHeight; yCord++)
         {
-            float _vCord = _yCord / (_newHeight * 1f);
-            int _scanLineIndex = _yCord * _newWidth;
+            float vCord = yCord / (newHeight * 1f);
+            int scanLineIndex = yCord * newWidth;
 
-            for (int _xCord = 0; _xCord < _newWidth; _xCord++)
+            for (int xCord = 0; xCord < newWidth; xCord++)
             {
-                float _uCord = _xCord / (_newWidth * 1f);
+                float uCord = xCord / (newWidth * 1f);
 
-                _scaledTexPixels[_scanLineIndex + _xCord] = texture.GetPixelBilinear(_uCord, _vCord);
+                scaledTexPixels[scanLineIndex + xCord] = texture.GetPixelBilinear(uCord, yCord);
             }
         }
 
-        // resize ÅØ½ºÃÄ »ý¼º
-        Texture2D result = new Texture2D(_newWidth, _newHeight, texture.format, false);
-        result.SetPixels(_scaledTexPixels, 0);
+        // resize ï¿½Ø½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        Texture2D result = new Texture2D(newWidth, newHeight, texture.format, false);
+        result.SetPixels(scaledTexPixels, 0);
         result.Apply();
 
         return result;
@@ -309,7 +311,7 @@ public class WebCamScript : MonoBehaviourPun, IPunObservable, IOnEventCallback
 
     private void OnDisable()
     {
-        //// UDP ½ºÆ®¸²À» Á¾·áÇÑ´Ù.
+        //// UDP ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
         //receivePort.Close();
 
         PhotonNetwork.NetworkingClient.RemoveCallbackTarget(this);
