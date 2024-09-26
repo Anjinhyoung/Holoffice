@@ -113,7 +113,7 @@ public class WebCamScript : MonoBehaviourPun, IPunObservable, IOnEventCallback
         webcamDisplay.texture = webcamTexture;
         webcamDisplay.enabled = false;
         panel_faceChat.SetActive(false);
-        sendSecond = 0.5f;
+        sendSecond = 0.2f;
     }
 
     void Update()
