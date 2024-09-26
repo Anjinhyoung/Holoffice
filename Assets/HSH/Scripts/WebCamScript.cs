@@ -151,6 +151,7 @@ public class WebCamScript : MonoBehaviourPun, IPunObservable, IOnEventCallback
         {
             object[] recievedObjects = (object[])photonEvent.CustomData;
             recievedTex = Base64ToTexture2D((byte[])recievedObjects[0]);
+
             if(!pv.IsMine)
             {
                 webcamDisplay.texture = recievedTex;
@@ -169,7 +170,7 @@ public class WebCamScript : MonoBehaviourPun, IPunObservable, IOnEventCallback
 
             sendTex.SetPixels32(webcamTexture.GetPixels32());
             sendTex.Apply();
-            sendTex = ScaleTexture(sendTex, 0.5f);
+            sendTex = ScaleTexture(sendTex, 0.3f);
 
             byte[] binData = sendTex.EncodeToPNG();
 
@@ -269,38 +270,40 @@ public class WebCamScript : MonoBehaviourPun, IPunObservable, IOnEventCallback
         }
     }
 
-    public Texture2D ScaleTexture(Texture2D texture, float scaleFactor)
+    public Texture2D ScaleTexture(Texture2D source, float _scaleFactor)
     {
-        if (scaleFactor == 1f)
+        if (_scaleFactor == 1f)
         {
-            return texture;
+            return source;
         }
-        else if (scaleFactor == 0f)
+        else if (_scaleFactor == 0f)
         {
             return Texture2D.blackTexture;
         }
 
-        int newWidth = Mathf.RoundToInt(texture.width * scaleFactor);
-        int newHeight = Mathf.RoundToInt(texture.height * scaleFactor);
+        int _newWidth = Mathf.RoundToInt(source.width * _scaleFactor);
+        int _newHeight = Mathf.RoundToInt(source.height * _scaleFactor);
 
-        Color[] scaledTexPixels = new Color[newWidth * newHeight];
 
-        for (int yCord = 0; yCord < newHeight; yCord++)
+
+        Color[] _scaledTexPixels = new Color[_newWidth * _newHeight];
+
+        for (int _yCord = 0; _yCord < _newHeight; _yCord++)
         {
-            float vCord = yCord / (newHeight * 1f);
-            int scanLineIndex = yCord * newWidth;
+            float _vCord = _yCord / (_newHeight * 1f);
+            int _scanLineIndex = _yCord * _newWidth;
 
-            for (int xCord = 0; xCord < newWidth; xCord++)
+            for (int _xCord = 0; _xCord < _newWidth; _xCord++)
             {
-                float uCord = xCord / (newWidth * 1f);
+                float _uCord = _xCord / (_newWidth * 1f);
 
-                scaledTexPixels[scanLineIndex + xCord] = texture.GetPixelBilinear(uCord, yCord);
+                _scaledTexPixels[_scanLineIndex + _xCord] = source.GetPixelBilinear(_uCord, _vCord);
             }
         }
 
-        // resize 텍스쳐 생성
-        Texture2D result = new Texture2D(newWidth, newHeight, texture.format, false);
-        result.SetPixels(scaledTexPixels, 0);
+        // Create Scaled Texture
+        Texture2D result = new Texture2D(_newWidth, _newHeight, source.format, false);
+        result.SetPixels(_scaledTexPixels, 0);
         result.Apply();
 
         return result;
